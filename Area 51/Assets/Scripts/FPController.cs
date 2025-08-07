@@ -40,6 +40,7 @@ public class FPController : MonoBehaviour
         lookInput = context.ReadValue<Vector2>();
     }
 
+
     public void HandleMovement()
     {
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
@@ -58,7 +59,8 @@ public class FPController : MonoBehaviour
         float mouseY = lookInput.y * lookSensitivity;
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,
+        verticalLookLimit);
 
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
