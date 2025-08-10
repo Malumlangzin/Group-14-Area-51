@@ -12,6 +12,16 @@ public class FPController : MonoBehaviour
     public float lookSensitivity = 2f;
     public float verticalLookLimit = 90f;
 
+    [Header("Crouch Settings")]
+    public float crouchHeight = 0.5f;
+    public float standHeight = 1.8f;
+    public float crouchSpeed = 2f;
+    public bool isCrouching = false;
+
+    [Header("Jump Settings")]
+    public float jumpHeight = 5f;
+
+
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -40,6 +50,28 @@ public class FPController : MonoBehaviour
         lookInput = context.ReadValue<Vector2>();
     }
 
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isCrouching = true;
+        }
+        else if (context.canceled)
+        {
+            isCrouching = false;
+        }
+
+        HandleCrouch();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(-2f * gravity * 1f); // Jump height of 1 unit
+        }
+    }
+
 
     public void HandleMovement()
     {
@@ -65,5 +97,29 @@ public class FPController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
-}
 
+    public void HandleCrouch()
+    {
+        if (isCrouching)
+        {
+            controller.height = crouchHeight;
+            moveSpeed = crouchSpeed; //slow down speed
+        }
+        else
+        {
+            controller.height = standHeight;
+            moveSpeed = 5f; // Reset to normal speed
+        }
+    }
+
+    public void HandleJump()
+    {
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime); //handles jump
+    }
+}
