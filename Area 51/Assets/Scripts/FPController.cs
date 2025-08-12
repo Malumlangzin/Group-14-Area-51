@@ -22,7 +22,7 @@ public class FPController : MonoBehaviour
     public float jumpHeight = 5f;
 
     [Header("Run Settings")]
-    public float runSpeed = 7f;
+    public float runSpeed = 10f;
 
 
     private CharacterController controller;
