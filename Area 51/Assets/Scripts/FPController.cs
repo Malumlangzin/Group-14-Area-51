@@ -15,14 +15,22 @@ public class FPController : MonoBehaviour
     [Header("Crouch Settings")]
     public float crouchHeight = 0.5f;
     public float standHeight = 1.8f;
-    public float crouchSpeed = 2f;
+    public float crouchSpeed = 3f;
     public bool isCrouching = false;
 
     [Header("Jump Settings")]
     public float jumpHeight = 5f;
 
     [Header("Run Settings")]
-    public float runSpeed = 10f;
+    public float runSpeed = 15f;
+
+    [Header("Zoom")]
+    public float zoomedOutFOV = 100f;
+    public float zoomedInFOV = 10f;
+    public float normalFOV;
+    public Camera playerCamera;
+    public float zoomStep = 2f; 
+
 
 
     private CharacterController controller;
@@ -36,12 +44,22 @@ public class FPController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        playerCamera = cameraTransform.GetComponent<Camera>();
+        normalFOV = playerCamera.fieldOfView;
     }
 
     private void Update()
     {
         HandleMovement();
         HandleLook();
+
+        playerCamera = cameraTransform.GetComponent<Camera>();
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
     }
     public void OnMovement(InputAction.CallbackContext context)
     {
@@ -82,6 +100,18 @@ public class FPController : MonoBehaviour
             moveSpeed = runSpeed;
         }
     }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        float scrollValue = context.ReadValue<float>();
+
+        if (scrollValue != 0)
+        {
+            normalFOV -= scrollValue * zoomStep; // scroll up = zoom in
+            normalFOV = Mathf.Clamp(normalFOV, zoomedInFOV, zoomedOutFOV);
+        }
+    }
+
 
 
     public void HandleMovement()
