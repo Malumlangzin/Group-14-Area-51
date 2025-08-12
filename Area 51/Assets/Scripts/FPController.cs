@@ -21,6 +21,9 @@ public class FPController : MonoBehaviour
     [Header("Jump Settings")]
     public float jumpHeight = 5f;
 
+    [Header("Run Settings")]
+    public float runSpeed = 7f;
+
 
     private CharacterController controller;
     private Vector2 moveInput;
@@ -72,6 +75,14 @@ public class FPController : MonoBehaviour
         }
     }
 
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            moveSpeed = runSpeed;
+        }
+    }
+
 
     public void HandleMovement()
     {
@@ -109,6 +120,18 @@ public class FPController : MonoBehaviour
         {
             controller.height = standHeight;
             moveSpeed = 5f; // Reset to normal speed
+        }
+    }
+
+    public void HandleRun()
+    {
+        if (moveInput.magnitude > 0)
+        {
+            moveSpeed = runSpeed; // Set to run speed when moving
+        }
+        else
+        {
+            moveSpeed = 5f; // Reset to normal speed when not moving
         }
     }
 
