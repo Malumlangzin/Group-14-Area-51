@@ -24,7 +24,7 @@ public class FPController : MonoBehaviour
     [Header("Run Settings")]
     public float runSpeed = 15f;
 
-    [Header("Zoom Settings")]
+    [Header("Zoom Settings")] 
     public float zoomedOutFOV = 100f;
     public float zoomedInFOV = 10f;
     public float normalFOV;
@@ -32,9 +32,13 @@ public class FPController : MonoBehaviour
     public float zoomStep = 2f;
 
     [Header("PickUp Settings")]
-    public float pickupRange = 3f;
+    public float pickupRange = 5f;
     private PickUpObject heldObject;
     public Transform holdPoint;
+
+    [Header("Throw Settings")]
+    public float throwForce = 10f;
+    public float throwUpwardBoost = 1f;
 
     private CharacterController controller;
     private Vector2 moveInput;
@@ -145,6 +149,17 @@ public class FPController : MonoBehaviour
         }
     }
 
+    public void OnThrow(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (heldObject == null) return;
+
+        Vector3 dir = cameraTransform.forward;
+        Vector3 impulse = dir * throwForce + Vector3.up * throwUpwardBoost;
+
+        heldObject.Throw(impulse);
+        heldObject = null;
+    }
 
     public void HandleMovement()
     {
