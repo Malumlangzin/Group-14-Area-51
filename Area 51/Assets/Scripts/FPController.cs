@@ -33,14 +33,8 @@ public class FPController : MonoBehaviour
 
     [Header("PickUp Settings")]
     public float pickupRange = 3f;
-    public float holdDistance = 2f;
-    public float pickupForce = 150f;
-    public float throwForce = 10f;
-
-    private Rigidbody heldObject;
-    private Transform holdPoint;
-
-
+    private PickUpObject heldObject;
+    public Transform holdPoint;
 
     private CharacterController controller;
     private Vector2 moveInput;
@@ -57,19 +51,21 @@ public class FPController : MonoBehaviour
         playerCamera = cameraTransform.GetComponent<Camera>();
         normalFOV = playerCamera.fieldOfView;
 
-        holdPoint = new GameObject("HoldPoint").transform;
-        holdPoint.SetParent(cameraTransform);
-        holdPoint.localPosition = new Vector3(0f, -0.2f, holdDistance);
     }
 
     private void Update()
     {
         HandleMovement();
         HandleLook();
-        HandleHeldObject();
 
         playerCamera = cameraTransform.GetComponent<Camera>();
         playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
+
+        if(heldObject != null)
+        {
+
+            heldObject.MoveToHoldPoint(holdPoint.position);
+        }
     }
     public void OnMovement(InputAction.CallbackContext context)
     {
@@ -124,20 +120,28 @@ public class FPController : MonoBehaviour
 
     public void OnPickUp(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            if (heldObject == null)
-                TryPickup();
-            else
-                DropObject();
-        }
-    }
+        if (!context.performed) return;
 
-    public void OnThrow(InputAction.CallbackContext context)
-    {
-        if (context.started && heldObject != null)
+        if (heldObject == null)
         {
-            ThrowObject();
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+            {
+                PickUpObject pickup = hit.collider.GetComponent<PickUpObject>();
+
+                if (pickup != null)
+                {
+                    pickup.PickUp(holdPoint);
+
+                    heldObject = pickup;
+                }
+            }
+        }
+        else
+        {
+            heldObject.Drop();
+            heldObject = null;
         }
     }
 
@@ -204,63 +208,5 @@ public class FPController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime); //handles jump
     }
 
-    private void HandleHeldObject()
-    {
-        if (heldObject != null)
-        {
-            Vector3 moveDirection = (holdPoint.position - heldObject.position);
-            float distance = moveDirection.magnitude;
-
-            float forceMultiplier = Mathf.Clamp(distance * 20f, 10f, 50f);
-            heldObject.linearVelocity = moveDirection * forceMultiplier * Time.deltaTime;
-
-            heldObject.angularVelocity = Vector3.zero;
-        }
-    }
-
-    private void TryPickup()
-    {
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
-        {
-            if (hit.collider.CompareTag("PickupItem"))
-            {
-                Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    heldObject = rb;
-                    heldObject.useGravity = false;
-                    heldObject.linearDamping = 0f;   // slows movement
-                    heldObject.angularDamping = 2f; // stops spinning
-                }
-            }
-        }
-    }
-
-    private void DropObject()
-    {
-        heldObject.useGravity = true;
-        heldObject.linearDamping = 0f;
-        heldObject.angularDamping = 0f;
-        heldObject = null;
-    }
-
-    private void ThrowObject()
-    {
-        if (heldObject != null)
-        {
-            heldObject.transform.SetParent(null);
-            heldObject.useGravity = true;
-            heldObject.linearDamping = 20f;
-            heldObject.angularDamping = 2f;
-
-            heldObject.AddForce(cameraTransform.forward * throwForce, ForceMode.Impulse);
-
-            heldObject = null;
-        }
-
-
-    }
 }
-
 
