@@ -16,8 +16,11 @@ public class PickUpObject : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+
         transform.SetParent(holdPoint);
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
     }
 
     public void Drop()
