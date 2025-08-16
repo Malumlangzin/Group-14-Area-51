@@ -20,13 +20,14 @@ public class FPController : MonoBehaviour
 
     [Header("Jump Settings")]
     public float jumpHeight = 5f;
+    public float jumpBoostMultiplier = 1.5f;
 
     [Header("Run Settings")]
-    public float runSpeed = 15f;
+    public float runSpeed = 10f;
 
     [Header("Zoom Settings")] 
     public float zoomedOutFOV = 100f;
-    public float zoomedInFOV = 10f;
+    public float zoomedInFOV = 5f;
     public float normalFOV;
     public Camera playerCamera;
     public float zoomStep = 2f;
@@ -38,7 +39,7 @@ public class FPController : MonoBehaviour
 
     [Header("Throw Settings")]
     public float throwForce = 10f;
-    public float throwUpwardBoost = 1f;
+    public float throwUpwardBoost = 2f;
 
     private CharacterController controller;
     private Vector2 moveInput;
@@ -97,10 +98,11 @@ public class FPController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && controller.isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(-2f * gravity * 3f);
-        }
+    
+          if (context.performed && controller.isGrounded)
+          {
+              velocity.y = Mathf.Sqrt(-2f * gravity * jumpHeight) * jumpBoostMultiplier; 
+          }
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -108,6 +110,12 @@ public class FPController : MonoBehaviour
         if (context.performed)
         {
             moveSpeed = runSpeed;
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV + 10f, 0.2f);
+        }
+        else if (context.canceled)
+        {
+            moveSpeed = 5f;
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, 0.2f);
         }
     }
 
@@ -117,7 +125,7 @@ public class FPController : MonoBehaviour
 
         if (scrollValue != 0)
         {
-            normalFOV -= scrollValue * zoomStep; // scroll up = zoom in
+            normalFOV -= scrollValue * zoomStep; 
             normalFOV = Mathf.Clamp(normalFOV, zoomedInFOV, zoomedOutFOV);
         }
     }
@@ -191,12 +199,12 @@ public class FPController : MonoBehaviour
         if (isCrouching)
         {
             controller.height = crouchHeight;
-            moveSpeed = crouchSpeed; //slow down speed
+            moveSpeed = crouchSpeed; 
         }
         else
         {
             controller.height = standHeight;
-            moveSpeed = 5f; // Reset to normal speed
+            moveSpeed = 5f; 
         }
     }
 
@@ -204,11 +212,11 @@ public class FPController : MonoBehaviour
     {
         if (moveInput.magnitude > 0)
         {
-            moveSpeed = runSpeed; // Set to run speed when moving
+            moveSpeed = runSpeed; 
         }
         else
         {
-            moveSpeed = 5f; // Reset to normal speed when not moving
+            moveSpeed = 5f; 
         }
     }
 
@@ -216,12 +224,11 @@ public class FPController : MonoBehaviour
     {
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = 1f;
         }
         velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime); //handles jump
+        controller.Move(velocity * Time.deltaTime); 
     }
 
 }
-
