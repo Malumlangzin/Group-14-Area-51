@@ -1,0 +1,34 @@
+{
+    "name": "UI InputSystem",
+    "maps": [
+        {
+            "name": "UI controls",
+            "id": "0b7ec11b-e5a7-4df2-800b-b1651a4aff2e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "8b3ee66c-1c9e-4413-bd0d-5f328af6ef3b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e7ce7a1a-56e0-4d16-ada1-3136a6495c8c",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
