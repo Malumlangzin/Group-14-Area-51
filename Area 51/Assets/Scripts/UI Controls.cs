@@ -10,4 +10,9 @@ public class UIController : MonoBehaviour
         print("any key pressed");
         SceneManager.LoadSceneAsync(1);
     }
+    public void Quitgame()
+    {
+        print("Quitgame");
+        Application.Quit();
+    }
 }
