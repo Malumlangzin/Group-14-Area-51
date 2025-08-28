@@ -235,4 +235,5 @@ public class FPController : MonoBehaviour
         print("Quitgame");
         Application.Quit();
     }
+
 }
