@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     public GameObject PauseUi;
-    public GameObject Options;
+    
     public void OnStart(InputAction.CallbackContext context)
     {
         print("any key pressed");
