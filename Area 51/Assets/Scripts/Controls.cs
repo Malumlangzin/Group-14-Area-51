@@ -171,6 +171,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Toobar"",
+                    ""type"": ""Button"",
+                    ""id"": ""29d05016-3ede-4780-8a6b-5c0d3d6dd751"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""befa914c-f44a-427f-acb7-4dfdf60c3069"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -558,6 +576,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca1da012-3811-4227-981d-afab1cd03c77"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toobar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ddd84f0-edd0-469a-9b6c-8f38f5b61746"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -575,6 +615,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Toobar = m_Player.FindAction("Toobar", throwIfNotFound: true);
+        m_Player_MiniMap = m_Player.FindAction("MiniMap", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -664,6 +706,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Toobar;
+    private readonly InputAction m_Player_MiniMap;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -711,6 +755,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Toobar".
+        /// </summary>
+        public InputAction @Toobar => m_Wrapper.m_Player_Toobar;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MiniMap".
+        /// </summary>
+        public InputAction @MiniMap => m_Wrapper.m_Player_MiniMap;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -764,6 +816,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Toobar.started += instance.OnToobar;
+            @Toobar.performed += instance.OnToobar;
+            @Toobar.canceled += instance.OnToobar;
+            @MiniMap.started += instance.OnMiniMap;
+            @MiniMap.performed += instance.OnMiniMap;
+            @MiniMap.canceled += instance.OnMiniMap;
         }
 
         /// <summary>
@@ -802,6 +860,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Toobar.started -= instance.OnToobar;
+            @Toobar.performed -= instance.OnToobar;
+            @Toobar.canceled -= instance.OnToobar;
+            @MiniMap.started -= instance.OnMiniMap;
+            @MiniMap.performed -= instance.OnMiniMap;
+            @MiniMap.canceled -= instance.OnMiniMap;
         }
 
         /// <summary>
@@ -905,5 +969,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Toobar" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToobar(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MiniMap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMiniMap(InputAction.CallbackContext context);
     }
 }
