@@ -34,7 +34,7 @@ public class FPController : MonoBehaviour
 
     [Header("PickUp Settings")]
     public float pickupRange = 5f;
-    private PickUpObject heldObject;
+    private Tools heldObject;
     public Transform holdPoint;
 
     [Header("Throw Settings")]
@@ -140,7 +140,7 @@ public class FPController : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
-                PickUpObject pickup = hit.collider.GetComponent<PickUpObject>();
+                Tools pickup = hit.collider.GetComponent<Tools>();
 
                 if (pickup != null)
                 {
