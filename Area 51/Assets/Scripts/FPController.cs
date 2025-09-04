@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 7f;
     public float gravity = -9.81f;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
-    public float lookSensitivity = 2f;
+    public float lookSensitivity = 1.5f;
     public float verticalLookLimit = 90f;
 
     [Header("Crouch Settings")]
@@ -19,11 +19,11 @@ public class FPController : MonoBehaviour
     public bool isCrouching = false;
 
     [Header("Jump Settings")]
-    public float jumpHeight = 5f;
+    public float jumpHeight = 7f;
     public float jumpBoostMultiplier = 1.5f;
 
     [Header("Run Settings")]
-    public float runSpeed = 10f;
+    public float runSpeed = 20f;
 
     [Header("Zoom Settings")] 
     public float zoomedOutFOV = 100f;
@@ -33,7 +33,7 @@ public class FPController : MonoBehaviour
     public float zoomStep = 2f;
 
     [Header("PickUp Settings")]
-    public float pickupRange = 5f;
+    public float pickupRange = 10f;
     private Tools heldObject;
     public Transform holdPoint;
 
