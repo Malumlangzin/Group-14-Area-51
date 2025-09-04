@@ -6,6 +6,7 @@ public class FPController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
     public float gravity = -9.81f;
+    public float currentSpeed = 7f;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
@@ -109,12 +110,12 @@ public class FPController : MonoBehaviour
     {
         if (context.performed)
         {
-            moveSpeed = runSpeed;
+            currentSpeed = runSpeed;
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV + 10f, 0.2f);
         }
         else if (context.canceled)
         {
-            moveSpeed = 5f;
+            currentSpeed = moveSpeed;
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, 0.2f);
         }
     }
@@ -147,6 +148,7 @@ public class FPController : MonoBehaviour
                     pickup.PickUp(holdPoint);
 
                     heldObject = pickup;
+                    currentSpeed = 15;
                 }
             }
         }
@@ -172,13 +174,13 @@ public class FPController : MonoBehaviour
     public void HandleMovement()
     {
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+       controller.Move(velocity * Time.deltaTime);
     }
 
     public void HandleLook()
@@ -199,12 +201,12 @@ public class FPController : MonoBehaviour
         if (isCrouching)
         {
             controller.height = crouchHeight;
-            moveSpeed = crouchSpeed; 
+            currentSpeed = crouchSpeed; 
         }
         else
         {
             controller.height = standHeight;
-            moveSpeed = 5f; 
+            currentSpeed = moveSpeed; 
         }
     }
 
@@ -212,11 +214,11 @@ public class FPController : MonoBehaviour
     {
         if (moveInput.magnitude > 0)
         {
-            moveSpeed = runSpeed; 
+            currentSpeed = runSpeed; 
         }
         else
         {
-            moveSpeed = 5f; 
+            currentSpeed = moveSpeed; 
         }
     }
 
