@@ -12,15 +12,24 @@ public class MainMenuController : MonoBehaviour
     {
         playButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(QuitGame);
+
         EventSystem.current.SetSelectedGameObject(playButton.gameObject);
+
+        pauseMenuUI.SetActive(false);
     }
 
     private void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject == null)
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenuUI.activeSelf) ResumeGame();
+        }
+
+        if (pauseMenuUI.activeSelf && EventSystem.current.currentSelectedGameObject == null)
             EventSystem.current.SetSelectedGameObject(playButton.gameObject);
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (pauseMenuUI.activeSelf && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
             Button selectedButton = EventSystem.current.currentSelectedGameObject?.GetComponent<Button>();
             if (selectedButton != null)
@@ -34,9 +43,8 @@ public class MainMenuController : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.Enable();
     }
+
 
     public void QuitGame()
     {

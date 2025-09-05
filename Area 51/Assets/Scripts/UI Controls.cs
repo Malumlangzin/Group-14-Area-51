@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
@@ -17,10 +18,13 @@ public class UIController : MonoBehaviour
     {
         PauseUi.SetActive(true);
 
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
 
         Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
     }
  public void Quitgame()
     {
