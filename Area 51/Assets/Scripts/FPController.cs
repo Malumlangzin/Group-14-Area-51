@@ -49,8 +49,6 @@ public class FPController : MonoBehaviour
     private Vector3 velocity;
     private float verticalRotation = 0f;
 
-    public enum ZoomLevel { ZoomedOut, Normal, ZoomedIn }
-    private ZoomLevel currentZoom = ZoomLevel.Normal;
 
     private void Awake()
     {
