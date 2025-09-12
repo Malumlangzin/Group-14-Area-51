@@ -14,6 +14,8 @@ public class NPC : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        agent.speed = 12f;
     }
 
     // Update is called once per frame

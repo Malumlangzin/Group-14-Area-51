@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81ac4a7e131a1243bf119947e0f334a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 20
-  viewAngle: 90
+  viewDistance: 15
+  viewAngle: 70
   rayCount: 3
   eyeHeight: 0.9
-  damageAmount: 10
+  damageAmount: 5
   damageCooldown: 2
