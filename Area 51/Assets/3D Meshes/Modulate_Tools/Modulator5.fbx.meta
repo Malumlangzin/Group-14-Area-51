@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 7569b08a988cf304691905b9d97e9e43
-ModelImporter:
-  serializedVersion: 22200
-  internalIDToNameTable: []
-  externalObjects: {}
-=======
-guid: e33c84e41b3edf1419f23da0159313e7
+guid: ba921df3b8dfdef44a660a2716ba829d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -15,8 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: aed0ff6c24efde34a917fff7b48d8876, type: 2}
->>>>>>> Stashed changes
+    second: {fileID: 2100000, guid: 231eb7ea2136e2c4594737cd85181efd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture
+    second: {fileID: 2100000, guid: 3c498149373460e45af109ebf072ef0b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
