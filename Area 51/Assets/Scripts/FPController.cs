@@ -5,7 +5,7 @@ public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
-    public float gravity = -9.81f;
+    public float gravity = -19.81f;
     public float currentSpeed;
 
     [Header("Look Settings")]
