@@ -666,8 +666,8 @@
     "m_ObjectId": "292041075e3049a9b59e33e819cf65af",
     "m_Title": "Cycle Time",
     "m_Position": {
-        "x": -2652.00048828125,
-        "y": 308.800048828125
+        "x": -2652.000244140625,
+        "y": 308.80010986328127
     }
 }
 
@@ -1462,7 +1462,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"5b29675866c64ba4da514427e5f1a6d5\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"cc7637e84af5c584fabf2560a8e0004e\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -1919,8 +1919,8 @@
     "m_ObjectId": "cd593db276ff49cf8af41aa93fd0e7ac",
     "m_Title": "Rotation",
     "m_Position": {
-        "x": -2643.2001953125,
-        "y": -141.5998992919922
+        "x": -2643.199951171875,
+        "y": -141.60003662109376
     }
 }
 
