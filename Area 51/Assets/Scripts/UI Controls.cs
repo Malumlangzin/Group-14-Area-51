@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     public GameObject PauseUi;
-    
+    public GameObject Options;
     public void OnStart(InputAction.CallbackContext context)
     {
         print("any key pressed");
@@ -26,7 +26,21 @@ public class UIController : MonoBehaviour
         Cursor.visible = true;
 
     }
- public void Quitgame()
+    public void OnOptionsPress()
+    {
+        Options.SetActive(true);
+        PauseUi.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void OnBackPress()
+    {
+        Options.SetActive(false);
+        PauseUi.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Quitgame()
     {
         print("Quitgame");
         Application.Quit();
