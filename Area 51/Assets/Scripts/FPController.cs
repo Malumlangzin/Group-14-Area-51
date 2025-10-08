@@ -28,8 +28,8 @@ public class FPController : MonoBehaviour
 
     [Header("Zoom Settings")]
     public float zoomedOutFOV = 100f;
-    public float zoomedInFOV = 5f;
-    public float normalFOV = 30;
+    public float zoomedInFOV = 20f;
+    public float normalFOV = 60f;
     public Camera playerCamera;
     public float zoomStep = 2f;
 
@@ -58,8 +58,13 @@ public class FPController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        playerCamera = cameraTransform.GetComponent<Camera>();
+        if (cameraTransform != null)
+            playerCamera = cameraTransform.GetComponent<Camera>();
 
+        if (playerCamera != null)
+            playerCamera.fieldOfView = normalFOV;
+        else
+            Debug.LogWarning("FPController: cameraTransform or Camera component not set.");
     }
 
     private void Update()
@@ -67,15 +72,13 @@ public class FPController : MonoBehaviour
         HandleMovement();
         HandleLook();
 
-        playerCamera = cameraTransform.GetComponent<Camera>();
-        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
+        if (playerCamera != null)
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
 
         if (heldObject != null)
-        {
-
             heldObject.MoveToHoldPoint(holdPoint.position);
-        }
     }
+
     public void OnMovement(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -154,7 +157,7 @@ public class FPController : MonoBehaviour
     {
         if (context.performed)
         {
-            normalFOV = 30f; 
+            normalFOV = 60f; 
         }
     }
 
