@@ -14,8 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onDeath;
-    public UnityEvent<int, int> onHealthChanged; 
-
+    public UnityEvent<int, int> onHealthChanged;
+    public HealthBar healthBar;
     void Awake()
     {
         currentHealth = maxHealth;
@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
         lastDamageTime = Time.time; 
         onHealthChanged?.Invoke(currentHealth, maxHealth);
+        healthBar.SetHealth(currentHealth);
 
         if (currentHealth == 0)
         {
