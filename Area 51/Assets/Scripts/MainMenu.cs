@@ -36,6 +36,8 @@ public class MainMenuController : MonoBehaviour
             Button selectedButton = EventSystem.current.currentSelectedGameObject?.GetComponent<Button>();
             if (selectedButton != null)
                 selectedButton.onClick.Invoke();
+
+            Time.timeScale = 0f;
         }
     }
 

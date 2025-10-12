@@ -4,10 +4,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 
-public class UIController : MonoBehaviour
+public class UIControls : MonoBehaviour
 {
     public GameObject PauseUi;
     public GameObject Options;
+    public GameObject Volume;
     public void OnStart(InputAction.CallbackContext context)
     {
         print("any key pressed");
@@ -26,11 +27,29 @@ public class UIController : MonoBehaviour
         Cursor.visible = true;
 
     }
+
+    public void OnVolume()
+    {
+        Volume.SetActive(true);
+
+        Cursor.visible = true;
+
+        Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void OnOptionsPress()
     {
         Options.SetActive(true);
         PauseUi.SetActive(false);
         Time.timeScale = 0f;
+    }
+
+    public void OnVolBack()
+    {
+        Volume.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     public void OnBackPress()
@@ -45,6 +64,7 @@ public class UIController : MonoBehaviour
         print("Quitgame");
         Application.Quit();
     }
+    
 
     public void OnPlayPress()
     {
