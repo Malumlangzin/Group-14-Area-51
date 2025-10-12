@@ -7,11 +7,13 @@ public class MainMenuController : MonoBehaviour
     public Button playButton;
     public Button quitButton;
     public GameObject pauseMenuUI;
+    
 
     private void Start()
     {
         playButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(QuitGame);
+        
 
         EventSystem.current.SetSelectedGameObject(playButton.gameObject);
 
