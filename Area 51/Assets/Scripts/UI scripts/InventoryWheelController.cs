@@ -10,6 +10,8 @@ public class InventoryWheelController : MonoBehaviour
     public Sprite noImage;
     public static int inventoryID;
 
+
+
     public void OnInventoryOpen(InputAction.CallbackContext context)
     {
         if (context.performed)

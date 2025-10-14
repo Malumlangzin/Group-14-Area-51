@@ -7,13 +7,14 @@ public class AudioManager : MonoBehaviour
 
     [Header("--Audio Source-- ")]
     [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource IntroSound;
     [SerializeField] AudioSource SFXSource;
 
     [Header("--Audio Clip--")]
     public AudioClip background;
-    public AudioClip macestrike;
-    public AudioClip buttonClick;
-    public AudioClip swordStrike;
+    public AudioClip Intro;
+    public AudioClip pickUp;
+    public AudioClip Drop;
     
    
     private void Start()
@@ -25,7 +26,7 @@ public class AudioManager : MonoBehaviour
     public void OnplayPress()
     {
         PauseUi.SetActive(true);
-        audioManager.PlaySFX(audioManager.buttonClick);
+       //udioManager.PlaySFX(audioManager.buttonClick);
         Time.timeScale = 1.0f;
     }
 

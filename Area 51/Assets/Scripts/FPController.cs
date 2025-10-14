@@ -5,12 +5,11 @@ public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
-    public float gravity = -19.81f;
+    public float gravity = -29.81f;
     public float currentSpeed;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
-    public float lookSensitivity = 0.6f;
     public float verticalLookLimit = 90f;
 
     [Header("Crouch Settings")]
@@ -20,7 +19,7 @@ public class FPController : MonoBehaviour
     public bool isCrouching = false;
 
     [Header("Jump Settings")]
-    public float jumpHeight = 3.5f;
+    public float jumpHeight = 2f;
     public float jumpBoostMultiplier = 1f;
 
     [Header("Run Settings")]
@@ -60,6 +59,8 @@ public class FPController : MonoBehaviour
 
         if (cameraTransform != null)
             playerCamera = cameraTransform.GetComponent<Camera>();
+
+        normalFOV = 60f;
 
         if (playerCamera != null)
             playerCamera.fieldOfView = normalFOV;
@@ -218,8 +219,8 @@ public class FPController : MonoBehaviour
 
     public void HandleLook()
     {
-        float mouseX = lookInput.x * lookSensitivity;
-        float mouseY = lookInput.y * lookSensitivity;
+        float mouseX = lookInput.x * SensitivityManager.value;
+        float mouseY = lookInput.y * SensitivityManager.value;
 
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,

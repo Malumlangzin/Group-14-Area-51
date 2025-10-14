@@ -1,9 +1,12 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour
+
+public class InventoryData : MonoBehaviour
 {
     public int ID;
     private Animator anim;
@@ -12,6 +15,7 @@ public class Inventory : MonoBehaviour
     public Image selectedItem;
     private bool selected = false;
     public Sprite icon;
+
 
     private void Start()
     {
