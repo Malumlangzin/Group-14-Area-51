@@ -7,11 +7,15 @@ public class MainMenuController : MonoBehaviour
     public Button playButton;
     public Button quitButton;
     public GameObject pauseMenuUI;
+    public GameObject Options;
+    public Button optionsButton;
 
     private void Start()
     {
         playButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(QuitGame);
+ 
+        
 
         EventSystem.current.SetSelectedGameObject(playButton.gameObject);
 
@@ -44,7 +48,6 @@ public class MainMenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
 
     public void QuitGame()
     {

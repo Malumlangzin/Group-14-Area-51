@@ -5,12 +5,11 @@ public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
-    public float gravity = -9.81f;
+    public float gravity = -29.81f;
     public float currentSpeed;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
-    public float lookSensitivity = 0.6f;
     public float verticalLookLimit = 90f;
 
     [Header("Crouch Settings")]
@@ -20,7 +19,7 @@ public class FPController : MonoBehaviour
     public bool isCrouching = false;
 
     [Header("Jump Settings")]
-    public float jumpHeight = 3.5f;
+    public float jumpHeight = 2f;
     public float jumpBoostMultiplier = 1f;
 
     [Header("Run Settings")]
@@ -28,8 +27,8 @@ public class FPController : MonoBehaviour
 
     [Header("Zoom Settings")]
     public float zoomedOutFOV = 100f;
-    public float zoomedInFOV = 5f;
-    public float normalFOV = 30;
+    public float zoomedInFOV = 20f;
+    public float normalFOV = 60f;
     public Camera playerCamera;
     public float zoomStep = 2f;
 
@@ -58,8 +57,15 @@ public class FPController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        playerCamera = cameraTransform.GetComponent<Camera>();
+        if (cameraTransform != null)
+            playerCamera = cameraTransform.GetComponent<Camera>();
 
+        normalFOV = 60f;
+
+        if (playerCamera != null)
+            playerCamera.fieldOfView = normalFOV;
+        else
+            Debug.LogWarning("FPController: cameraTransform or Camera component not set.");
     }
 
     private void Update()
@@ -67,15 +73,13 @@ public class FPController : MonoBehaviour
         HandleMovement();
         HandleLook();
 
-        playerCamera = cameraTransform.GetComponent<Camera>();
-        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
+        if (playerCamera != null)
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, normalFOV, Time.deltaTime * 10f);
 
         if (heldObject != null)
-        {
-
             heldObject.MoveToHoldPoint(holdPoint.position);
-        }
     }
+
     public void OnMovement(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -154,7 +158,7 @@ public class FPController : MonoBehaviour
     {
         if (context.performed)
         {
-            normalFOV = 30f; 
+            normalFOV = 60f; 
         }
     }
 
@@ -215,8 +219,8 @@ public class FPController : MonoBehaviour
 
     public void HandleLook()
     {
-        float mouseX = lookInput.x * lookSensitivity;
-        float mouseY = lookInput.y * lookSensitivity;
+        float mouseX = lookInput.x * SensitivityManager.value;
+        float mouseY = lookInput.y * SensitivityManager.value;
 
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,
