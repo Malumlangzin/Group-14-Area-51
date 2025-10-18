@@ -5,11 +5,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 
-// Title: Let's Create: A sliding puzzle game in Unity
-//Author: Firnox
-//Date: 13 October 2025
-//Code version: 2.0
-//Availability: https://www.youtube.com/watch?v=IgBjJ-bexeo
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform gameTransform;

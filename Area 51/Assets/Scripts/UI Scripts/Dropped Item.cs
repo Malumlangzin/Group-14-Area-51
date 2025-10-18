@@ -11,7 +11,7 @@ public class DroppedItem : MonoBehaviour
     bool autoStart;
 
     [SerializeField]
-    float enabledPickupDelay = 1.0f;
+    float enabledPickupDelay = 2.0f;
 
     [Header("State")]
     public Item item;
