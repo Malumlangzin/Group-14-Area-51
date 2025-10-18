@@ -8,32 +8,48 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
 
     [Header("Regeneration")]
-    public float regenRate = 3f;         
-    public float regenDelay = 2f;        
+    public float regenRate = 3f;
+    public float regenDelay = 2f;
     private float lastDamageTime;
 
     [Header("Events")]
     public UnityEvent onDeath;
-    public UnityEvent<int, int> onHealthChanged; 
+    public UnityEvent<int, int> onHealthChanged;
+
+    [Header("UI")]
+    public HealthBar healthBar;
 
     void Awake()
     {
         currentHealth = maxHealth;
-        lastDamageTime = -regenDelay; 
+
+        lastDamageTime = -regenDelay;
+
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetHealth(currentHealth);
+        }
+
+        onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     void Update()
     {
-     
         if (currentHealth > 0 && Time.time - lastDamageTime >= regenDelay)
         {
-            currentHealth += Mathf.RoundToInt(regenRate * Time.deltaTime);
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            onHealthChanged?.Invoke(currentHealth, maxHealth);
+            int regenAmount = Mathf.RoundToInt(regenRate * Time.deltaTime);
+            if (regenAmount > 0)
+            {
+                currentHealth += regenAmount;
+                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+                healthBar?.SetHealth(currentHealth);
+                onHealthChanged?.Invoke(currentHealth, maxHealth);
+            }
         }
     }
 
-   
     public void TakeDamage(int amount)
     {
         if (amount <= 0 || currentHealth <= 0) return;
@@ -41,7 +57,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        lastDamageTime = Time.time; 
+        lastDamageTime = Time.time;
+        healthBar?.SetHealth(currentHealth);
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth == 0)
@@ -56,12 +73,15 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        healthBar?.SetHealth(currentHealth);
         onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     void Die()
     {
         Debug.Log("Player died!");
+        onDeath?.Invoke();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
