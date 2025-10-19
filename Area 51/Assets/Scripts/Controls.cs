@@ -183,15 +183,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MiniMap"",
-                    ""type"": ""Button"",
-                    ""id"": ""befa914c-f44a-427f-acb7-4dfdf60c3069"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ZoomIn"",
                     ""type"": ""Value"",
                     ""id"": ""f6e27621-c48c-4588-b690-21553adc7c06"",
@@ -542,22 +533,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ca1da012-3811-4227-981d-afab1cd03c77"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Toobar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7ddd84f0-edd0-469a-9b6c-8f38f5b61746"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiniMap"",
+                    ""action"": ""Toobar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -611,7 +591,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Toobar = m_Player.FindAction("Toobar", throwIfNotFound: true);
-        m_Player_MiniMap = m_Player.FindAction("MiniMap", throwIfNotFound: true);
         m_Player_ZoomIn = m_Player.FindAction("ZoomIn", throwIfNotFound: true);
         m_Player_ZoomOut = m_Player.FindAction("ZoomOut", throwIfNotFound: true);
         m_Player_Normal = m_Player.FindAction("Normal", throwIfNotFound: true);
@@ -705,7 +684,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Toobar;
-    private readonly InputAction m_Player_MiniMap;
     private readonly InputAction m_Player_ZoomIn;
     private readonly InputAction m_Player_ZoomOut;
     private readonly InputAction m_Player_Normal;
@@ -760,10 +738,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Toobar".
         /// </summary>
         public InputAction @Toobar => m_Wrapper.m_Player_Toobar;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/MiniMap".
-        /// </summary>
-        public InputAction @MiniMap => m_Wrapper.m_Player_MiniMap;
         /// <summary>
         /// Provides access to the underlying input action "Player/ZoomIn".
         /// </summary>
@@ -832,9 +806,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Toobar.started += instance.OnToobar;
             @Toobar.performed += instance.OnToobar;
             @Toobar.canceled += instance.OnToobar;
-            @MiniMap.started += instance.OnMiniMap;
-            @MiniMap.performed += instance.OnMiniMap;
-            @MiniMap.canceled += instance.OnMiniMap;
             @ZoomIn.started += instance.OnZoomIn;
             @ZoomIn.performed += instance.OnZoomIn;
             @ZoomIn.canceled += instance.OnZoomIn;
@@ -885,9 +856,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Toobar.started -= instance.OnToobar;
             @Toobar.performed -= instance.OnToobar;
             @Toobar.canceled -= instance.OnToobar;
-            @MiniMap.started -= instance.OnMiniMap;
-            @MiniMap.performed -= instance.OnMiniMap;
-            @MiniMap.canceled -= instance.OnMiniMap;
             @ZoomIn.started -= instance.OnZoomIn;
             @ZoomIn.performed -= instance.OnZoomIn;
             @ZoomIn.canceled -= instance.OnZoomIn;
@@ -1007,13 +975,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToobar(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "MiniMap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMiniMap(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "ZoomIn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
