@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using System;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(Collider))]
