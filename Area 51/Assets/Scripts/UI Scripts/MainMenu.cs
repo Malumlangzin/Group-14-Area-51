@@ -51,7 +51,7 @@ public class MainMenuController : MonoBehaviour
     public void OnOptionsPress()
     {
         Options.SetActive(true);
-        pauseMenuUI.SetActive(false);
+       // pauseMenuUI.SetActive(false);
         Time.timeScale = 0f;
     }
 
