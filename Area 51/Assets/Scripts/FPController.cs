@@ -173,7 +173,7 @@ public class FPController : MonoBehaviour
         if (heldObject == null)
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
+            
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 Tools pickup = hit.collider.GetComponent<Tools>();
@@ -186,7 +186,7 @@ public class FPController : MonoBehaviour
                     currentSpeed = carrySpeed;
                 }
             }
-        }
+        } 
         else
         {
             heldObject.Drop();
