@@ -8829,11 +8829,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9806e230e0127dc41885978f5a9b0629, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.87
+      value: -15.377596
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9806e230e0127dc41885978f5a9b0629, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -136.52
+      value: -145.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9806e230e0127dc41885978f5a9b0629, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8955,7 +8955,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnMovement
         m_Mode: 0
@@ -8971,7 +8971,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/anyKey,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -8987,7 +8987,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnCrouch
         m_Mode: 0
@@ -9003,7 +9003,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/leftCtrl]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -9019,7 +9019,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnRun
         m_Mode: 0
@@ -9035,7 +9035,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Run[/Keyboard/leftShift]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnZoom
         m_Mode: 0
@@ -9051,7 +9051,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Zoom[/Mouse/scroll/down,/Mouse/scroll/up]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnPickUp
         m_Mode: 0
@@ -9067,7 +9067,7 @@ MonoBehaviour:
     m_ActionName: 'Player/PickUp[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnThrow
         m_Mode: 0
@@ -9099,13 +9099,13 @@ MonoBehaviour:
     m_ActionName: 'Player/Quit[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365323639}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 6051198190574466548}
+        m_TargetAssemblyTypeName: UIControls, Assembly-CSharp
+        m_MethodName: OnInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9115,7 +9115,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Toobar[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnZoomIn
         m_Mode: 0
@@ -9131,7 +9131,7 @@ MonoBehaviour:
     m_ActionName: 'Player/ZoomIn[/DualShock4GamepadHID/leftTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnZoomOut
         m_Mode: 0
@@ -9147,7 +9147,7 @@ MonoBehaviour:
     m_ActionName: 'Player/ZoomOut[/DualShock4GamepadHID/rightTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365323650}
         m_TargetAssemblyTypeName: FPController, Assembly-CSharp
         m_MethodName: OnNormal
         m_Mode: 0
@@ -9353,12 +9353,12 @@ MonoBehaviour:
   normalFOV: 60
   playerCamera: {fileID: 8190455677208494535}
   zoomStep: 2
-  pickupRange: 15
+  pickupRange: 9
   carrySpeed: 15
   holdPoint: {fileID: 865784556}
   throwForce: 10
   throwUpwardBoost: 1
-  animator: {fileID: 928440306}
+  animator: {fileID: 0}
 --- !u!114 &365323651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24426,7 +24426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7539667158776720588, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.3
+      value: 56.5
       objectReference: {fileID: 0}
     - target: {fileID: 7539667158776720588, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40454,11 +40454,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &928440306 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9806e230e0127dc41885978f5a9b0629, type: 3}
-  m_PrefabInstance: {fileID: 365323638}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &944116037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78059,6 +78054,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 107660673784253989, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6051198190574466550}
+    - target: {fileID: 107660673784253989, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 107660673784253989, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333730914405584465, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIControls, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1799782113378431050, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -78147,6 +78158,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5280093167071894676, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6051198190574466550}
+    - target: {fileID: 5280093167071894676, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280093167071894676, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78161,6 +78184,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65024206162e30545817500ae7afb0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6051198190574466550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6157103178624372466, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+  m_PrefabInstance: {fileID: 6051198190574466547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442638621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35541fc003dc72488a07926ebb891a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6234887407693064711

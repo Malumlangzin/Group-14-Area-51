@@ -13,7 +13,7 @@ public class InventoryOn : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(InventoryButton.gameObject);
 
-        inventoryWheel.SetActive(false);
+        inventoryWheel.SetActive(true);
     }
 
     private void Update()
