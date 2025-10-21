@@ -97,15 +97,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MiniMap",
-                    "type": "Button",
-                    "id": "befa914c-f44a-427f-acb7-4dfdf60c3069",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ZoomIn",
                     "type": "Value",
                     "id": "f6e27621-c48c-4588-b690-21553adc7c06",
@@ -456,22 +447,11 @@
                 {
                     "name": "",
                     "id": "ca1da012-3811-4227-981d-afab1cd03c77",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toobar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ddd84f0-edd0-469a-9b6c-8f38f5b61746",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiniMap",
+                    "action": "Toobar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
