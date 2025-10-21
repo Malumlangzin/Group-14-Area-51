@@ -43,12 +43,15 @@ public class FPController : MonoBehaviour
     public float throwForce = 10f;
     public float throwUpwardBoost = 2f;
 
+    [Header("Animation Settings")]
+    [Space(5)]
+    public Animator animator;
+
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
-
 
     private void Awake()
     {
@@ -170,7 +173,7 @@ public class FPController : MonoBehaviour
         if (heldObject == null)
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
+            
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 Tools pickup = hit.collider.GetComponent<Tools>();
@@ -183,7 +186,7 @@ public class FPController : MonoBehaviour
                     currentSpeed = carrySpeed;
                 }
             }
-        }
+        } 
         else
         {
             heldObject.Drop();
@@ -214,6 +217,9 @@ public class FPController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
+        animator.SetFloat("Speed", movementMagnitude);
     }
 
     public void HandleLook()
@@ -253,6 +259,9 @@ public class FPController : MonoBehaviour
         {
             currentSpeed = moveSpeed;
         }
+
+        float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
+        animator.SetFloat("Speed", movementMagnitude);
     }
 
     public void HandleJump()

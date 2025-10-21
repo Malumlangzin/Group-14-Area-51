@@ -146,7 +146,7 @@ RectTransform:
   m_GameObject: {fileID: 13408599}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.810464, y: 4.0129437, z: 0.96465}
+  m_LocalScale: {x: 8.478282, y: 4.4142385, z: 0.96465}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 943251324}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5b29675866c64ba4da514427e5f1a6d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -317,10 +317,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 408529494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050dc930cf157e44095ee78cff4dd658, type: 3}
+  m_Script: {fileID: 11500000, guid: 65024206162e30545817500ae7afb0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseUi: {fileID: 1852963160}
+  PauseUi: {fileID: 0}
+  Options: {fileID: 0}
+  Volume: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!114 &408529496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,16 +478,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943251323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.49321347, y: 0.9090909, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 13408600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 4.4}
   m_SizeDelta: {x: 100, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &943251325
@@ -507,16 +510,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is the first prototype of our game, which is a First-person walking
-    simulator/Horror/Sci-fi game. Objective is to collect the technology that was
-    left behind and bring them back to the room you spawn in.\r\n\nCore mechanics:
-    walking, jumping, collecting items, hidding. \n\nUse W,A,S,D to move.  Left Control/Right
+  m_text: "Objective is to collect the tools around the area that were left behind
+    and bring them to the space ship.\r \n\nUse W,A,S,D to move.  Left Control/Right
     stick press to crouch. Space/Button south to jump. Shift/left stick press to
-    run. E/Button east to pickup. G/Left shoulder/Right click to throw.\n\nNOTE:
-    This is version 2 of the game.\n\nPress any key to Play."
+    run. E/Button east to pickup. G/Left shoulder/Right click to throw.\n\nPress
+    any key to Play."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -578,7 +579,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.31735, y: -25.462765, z: 49.714684, w: -24.890606}
+  m_margin: {x: 50.31735, y: -21.419552, z: 49.714684, w: -17.67057}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -789,6 +790,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267878814}
   m_CullTransparentMesh: 1
+--- !u!1001 &1606289254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 168084846783626877, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: Music2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 168084846783626877, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: 11bac4457bb90d84d8fe9a117f28fb5d, type: 3}
+    - target: {fileID: 168084846783626877, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: foreground
+      value: 
+      objectReference: {fileID: 8300000, guid: 11bac4457bb90d84d8fe9a117f28fb5d, type: 3}
+    - target: {fileID: 168084846783626877, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: voicelines
+      value: 
+      objectReference: {fileID: 8300000, guid: 19048373c74791c4eabc1d4bac2ab476, type: 3}
+    - target: {fileID: 1926888964340869336, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738366755501120180, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738366755501120180, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 248.39488
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -27.666615
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 298.6466
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099140348819088993, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15507a1669fc16a4689fca0468d0f285, type: 3}
 --- !u!1 &1852963160
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,10 +960,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1852963160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050dc930cf157e44095ee78cff4dd658, type: 3}
+  m_Script: {fileID: 11500000, guid: 65024206162e30545817500ae7afb0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseUi: {fileID: 1852963160}
+  PauseUi: {fileID: 0}
+  Options: {fileID: 0}
+  Volume: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -890,3 +975,4 @@ SceneRoots:
   - {fileID: 962358647}
   - {fileID: 408529500}
   - {fileID: 1852963164}
+  - {fileID: 1606289254}

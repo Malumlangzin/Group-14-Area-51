@@ -13,13 +13,13 @@ public class InventoryOn : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(InventoryButton.gameObject);
 
-        inventoryWheel.SetActive(false);
+        inventoryWheel.SetActive(true);
     }
 
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (inventoryWheel.activeSelf) ResumeGame();
         }
