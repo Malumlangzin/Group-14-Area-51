@@ -21,11 +21,12 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patrol();  
+        Patrol();
     }
 
     void Patrol()
-    {         if (!walkPointSet)
+    {
+        if (!walkPointSet)
         {
             SearchWalkPoint();
         }
@@ -34,7 +35,7 @@ public class NPC : MonoBehaviour
             agent.SetDestination(walkPoint);
         }
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-  
+
         if (distanceToWalkPoint.magnitude < 5f)
         {
             walkPointSet = false;
