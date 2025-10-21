@@ -7,6 +7,7 @@ public class MainMenuController : MonoBehaviour
     public Button playButton;
     public Button quitButton;
     public GameObject pauseMenuUI;
+    public GameObject Options;
 
     private void Start()
     {
@@ -47,6 +48,12 @@ public class MainMenuController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void OnOptionsPress()
+    {
+        Options.SetActive(true);
+       // pauseMenuUI.SetActive(false);
+        Time.timeScale = 0f;
+    }
 
     public void QuitGame()
     {
