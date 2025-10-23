@@ -3,55 +3,60 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
-    NavMeshAgent agent;
-    [SerializeField] LayerMask groundLayer, playerLayer;
+    private NavMeshAgent agent;
+    [SerializeField] private LayerMask groundLayer;
 
-    Vector3 walkPoint;
-    bool walkPointSet;
-    [SerializeField] float walkRange;
+    [Header("Patrol Settings")]
+    [SerializeField] private float walkRange = 10f;
+    [SerializeField] private float reachThreshold = 1f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector3 walkPoint;
+    private bool walkPointSet;
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-
         agent.speed = 12f;
+        agent.stoppingDistance = 0f;
+        agent.autoBraking = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Patrol();
     }
 
-    void Patrol()
+    private void Patrol()
     {
         if (!walkPointSet)
         {
             SearchWalkPoint();
         }
+
         if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
-        }
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if (distanceToWalkPoint.magnitude < 5f)
-        {
-            walkPointSet = false;
+            if (Vector3.Distance(transform.position, walkPoint) < reachThreshold)
+            {
+                walkPointSet = false;
+            }
         }
     }
 
-    void SearchWalkPoint()
+    private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkRange, walkRange);
         float randomX = Random.Range(-walkRange, walkRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        Vector3 potentialPoint = transform.position + new Vector3(randomX, 0, randomZ);
 
-        if (Physics.Raycast(walkPoint, Vector3.down, groundLayer))
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(potentialPoint, out hit, 2f, NavMesh.AllAreas))
         {
-            walkPointSet = true;
+              walkPoint = hit.position;
+              walkPointSet = true;
+   
         }
     }
 }
