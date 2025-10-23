@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -22,6 +23,7 @@ public class FPController : MonoBehaviour
     [Header("Jump Settings")]
     public float jumpHeight = 3.5f;
     public float jumpBoostMultiplier = 1f;
+    private bool jumpRequested = false;
 
     [Header("Run Settings")]
     public float runSpeed = 20f;
@@ -44,7 +46,6 @@ public class FPController : MonoBehaviour
     public float throwUpwardBoost = 2f;
 
     [Header("Animation Settings")]
-    [Space(5)]
     public Animator animator;
 
     private CharacterController controller;
@@ -56,7 +57,6 @@ public class FPController : MonoBehaviour
     private void Awake()
     {
         currentSpeed = moveSpeed;
-
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -66,13 +66,12 @@ public class FPController : MonoBehaviour
 
         if (playerCamera != null)
             playerCamera.fieldOfView = normalFOV;
-        else
-            Debug.LogWarning("FPController: cameraTransform or Camera component not set.");
     }
 
     private void Update()
     {
         HandleMovement();
+        HandleJump();
         HandleLook();
 
         if (playerCamera != null)
@@ -80,6 +79,8 @@ public class FPController : MonoBehaviour
 
         if (heldObject != null)
             heldObject.MoveToHoldPoint(holdPoint.position);
+
+        Debug.Log($"PlayerY: {transform.position.y:F3} | Grounded: {controller.isGrounded} | velY: {velocity.y:F3}");
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -95,24 +96,17 @@ public class FPController : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             isCrouching = true;
-        }
         else if (context.canceled)
-        {
             isCrouching = false;
-        }
 
         HandleCrouch();
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
-        if (context.performed && controller.isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(-2f * gravity * jumpHeight) * jumpBoostMultiplier;
-        }
+        if (context.performed)
+            jumpRequested = true;
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -143,28 +137,20 @@ public class FPController : MonoBehaviour
     public void OnZoomIn(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             normalFOV = zoomedInFOV;
-        }
     }
 
     public void OnZoomOut(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             normalFOV = zoomedOutFOV;
-        }
     }
 
     public void OnNormal(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
-            normalFOV = 60f; 
-        }
+            normalFOV = 60f;
     }
-
-
 
     public void OnPickUp(InputAction.CallbackContext context)
     {
@@ -173,20 +159,17 @@ public class FPController : MonoBehaviour
         if (heldObject == null)
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-            
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 Tools pickup = hit.collider.GetComponent<Tools>();
-
                 if (pickup != null)
                 {
                     pickup.PickUp(holdPoint);
-
                     heldObject = pickup;
                     currentSpeed = carrySpeed;
                 }
             }
-        } 
+        }
         else
         {
             heldObject.Drop();
@@ -212,14 +195,31 @@ public class FPController : MonoBehaviour
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        if (controller.isGrounded && velocity.y < 0)
-            velocity.y = -2f;
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
         float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
         animator.SetFloat("Speed", movementMagnitude);
+    }
+
+    public void HandleJump()
+    {
+        if (controller.isGrounded)
+        {
+            velocity.y = -2f;
+
+            if (jumpRequested)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity) * jumpBoostMultiplier;
+                jumpRequested = false;
+            }
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        if (velocity.y < -50f)
+            velocity.y = -50f;
+
+        controller.Move(velocity * Time.deltaTime);
     }
 
     public void HandleLook()
@@ -228,8 +228,7 @@ public class FPController : MonoBehaviour
         float mouseY = lookInput.y * lookSensitivity;
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,
-        verticalLookLimit);
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
 
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
@@ -252,32 +251,16 @@ public class FPController : MonoBehaviour
     public void HandleRun()
     {
         if (moveInput.magnitude > 0)
-        {
             currentSpeed = runSpeed;
-        }
         else
-        {
             currentSpeed = moveSpeed;
-        }
 
         float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
         animator.SetFloat("Speed", movementMagnitude);
     }
 
-    public void HandleJump()
-    {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = 1f;
-        }
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
     public void Quitgame()
     {
-        print("Quitgame");
         Application.Quit();
     }
-
 }
