@@ -17,6 +17,7 @@ public class GameManager3D : MonoBehaviour
     void Start()
     {
         CreateGamePieces();
+        StartCoroutine(WaitShuffle(0.5f));
     }
 
     private void CreateGamePieces()
@@ -41,19 +42,22 @@ public class GameManager3D : MonoBehaviour
                 if ((row == size - 1) && (col == size - 1))
                 {
                     emptyLocation = (size * size) - 1;
-                    piece.gameObject.SetActive(false);
+                    piece.gameObject.SetActive(false); 
                 }
 
                 Mesh mesh = piece.GetComponent<MeshFilter>().mesh;
-                Vector2[] uv = new Vector2[4];
-                float gap = gapThickness / 2;
+                if (mesh.vertexCount == 4)
+                {
+                    Vector2[] uv = new Vector2[4];
+                    float gap = gapThickness / 2;
 
-                uv[0] = new Vector2((width * col) + gap, 1 - (width * (row + 1)) - gap);
-                uv[1] = new Vector2((width * (col + 1)) - gap, 1 - (width * (row + 1)) - gap);
-                uv[2] = new Vector2((width * col) + gap, 1 - (width * row) + gap);
-                uv[3] = new Vector2((width * (col + 1)) - gap, 1 - (width * row) + gap);
+                    uv[0] = new Vector2((width * col) + gap, 1 - (width * (row + 1)) - gap);
+                    uv[1] = new Vector2((width * (col + 1)) - gap, 1 - (width * (row + 1)) - gap);
+                    uv[2] = new Vector2((width * col) + gap, 1 - (width * row) + gap);
+                    uv[3] = new Vector2((width * (col + 1)) - gap, 1 - (width * row) + gap);
 
-                mesh.uv = uv;
+                    mesh.uv = uv;
+                }
 
                 if (!piece.GetComponent<Collider>())
                     piece.gameObject.AddComponent<BoxCollider>();
@@ -65,7 +69,7 @@ public class GameManager3D : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !shuffling)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -74,29 +78,42 @@ public class GameManager3D : MonoBehaviour
                 {
                     if (pieces[i] == hit.transform)
                     {
-                        if (SwapIfValid(i, -size, size)) break;
-                        if (SwapIfValid(i, +size, size)) break;
-                        if (SwapIfValid(i, -1, 0)) break;
-                        if (SwapIfValid(i, +1, size - 1)) break;
+                        if (SwapIfValid(i, -size))
+                            break;      
+                        if (SwapIfValid(i, +size)) 
+                            break;       
+                        if (SwapIfValid(i, -1, true)) 
+                            break;   
+                        if (SwapIfValid(i, +1, true)) 
+                            break;  
                     }
+                }
+
+                if (CheckCompletion())
+                {
+                    Debug.Log("Puzzle Completed!");
                 }
             }
         }
-
-        if (!shuffling && CheckCompletion())
-        {
-            shuffling = true;
-            StartCoroutine(WaitShuffle(0.5f));
-        }
     }
 
-    private bool SwapIfValid(int i, int offset, int colCheck)
+    private bool SwapIfValid(int i, int offset, bool checkColumn = false)
     {
-        if (((i % size) != colCheck) && ((i + offset) == emptyLocation))
+        int target = i + offset;
+
+        if (target < 0 || target >= pieces.Count)
+            return false;
+
+        
+        if (checkColumn && (i / size != target / size))
+            return false;
+
+        if (target == emptyLocation)
         {
-            (pieces[i], pieces[i + offset]) = (pieces[i + offset], pieces[i]);
-            (pieces[i].localPosition, pieces[i + offset].localPosition) =
-                (pieces[i + offset].localPosition, pieces[i].localPosition);
+            (pieces[i], pieces[target]) = (pieces[target], pieces[i]);
+            
+            (pieces[i].localPosition, pieces[target].localPosition) =
+                (pieces[target].localPosition, pieces[i].localPosition);
 
             emptyLocation = i;
             return true;
@@ -115,6 +132,7 @@ public class GameManager3D : MonoBehaviour
 
     private IEnumerator WaitShuffle(float duration)
     {
+        shuffling = true;
         yield return new WaitForSeconds(duration);
         Shuffle();
         shuffling = false;
@@ -122,19 +140,22 @@ public class GameManager3D : MonoBehaviour
 
     private void Shuffle()
     {
-        int count = 0;
-        int last = 0;
-
-        while (count < size * size * size)
+        for (int i = 0; i < size * size * size; i++)
         {
-            int rnd = Random.Range(0, size * size);
-            if (rnd == last) continue;
-            last = emptyLocation;
+            List<int> neighbours = new List<int>();
 
-            if (SwapIfValid(rnd, -size, size)) count++;
-            else if (SwapIfValid(rnd, +size, size)) count++;
-            else if (SwapIfValid(rnd, -1, 0)) count++;
-            else if (SwapIfValid(rnd, +1, size - 1)) count++;
+            if (emptyLocation >= size) 
+                neighbours.Add(emptyLocation - size);          
+            if (emptyLocation < pieces.Count - size) 
+                neighbours.Add(emptyLocation + size); 
+            if (emptyLocation % size != 0) 
+                neighbours.Add(emptyLocation - 1);        
+            if (emptyLocation % size != size - 1) 
+                neighbours.Add(emptyLocation + 1); 
+
+            int rndIndex = Random.Range(0, neighbours.Count);
+            int swapIndex = neighbours[rndIndex];
+            SwapIfValid(swapIndex, emptyLocation - swapIndex);
         }
     }
 }
