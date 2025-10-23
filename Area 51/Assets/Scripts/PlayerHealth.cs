@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class DamageEvent : UnityEvent<int> { }
+
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
@@ -15,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("Events")]
     public UnityEvent onDeath;
     public UnityEvent<int, int> onHealthChanged;
+    public DamageEvent onTakeDamage; // NEW: Enemy can trigger damage
 
     [Header("UI")]
     public HealthBar healthBar;
@@ -22,14 +26,10 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
-
         lastDamageTime = -regenDelay;
 
-        if (healthBar != null)
-        {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
-        }
+        healthBar?.SetMaxHealth(maxHealth);
+        healthBar?.SetHealth(currentHealth);
 
         onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
@@ -61,10 +61,7 @@ public class PlayerHealth : MonoBehaviour
         healthBar?.SetHealth(currentHealth);
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
-        if (currentHealth == 0)
-        {
-            Die();
-        }
+        if (currentHealth == 0) Die();
     }
 
     public void Heal(int amount)
@@ -82,7 +79,6 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player died!");
         onDeath?.Invoke();
-
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );

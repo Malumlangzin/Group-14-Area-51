@@ -3,14 +3,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Vision Settings")]
-    public float viewDistance = 15f;     
-    public float viewAngle = 70f;        
-    public int rayCount = 3;             
-    public float eyeHeight = 0.9f;       
+    public float viewDistance = 15f;
+    public float viewAngle = 70f;
+    public int rayCount = 3;
+    public float eyeHeight = 0.9f;
 
     [Header("Damage Settings")]
     public int damageAmount = 5;
-    public float damageCooldown = 2f;  
+    public float damageCooldown = 2f;
     private float lastDamageTime;
 
     private Transform player;
@@ -20,18 +20,13 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindWithTag("Play");
+        GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
         {
             player = playerObj.transform;
             playerHealth = player.GetComponent<PlayerHealth>();
         }
-        else
-        {
-            Debug.LogWarning("Player not found! Make sure your Player has the 'Player' tag.");
-        }
 
- 
         rayLines = new LineRenderer[rayCount];
         for (int i = 0; i < rayCount; i++)
         {
@@ -41,7 +36,7 @@ public class Enemy : MonoBehaviour
             lr.startWidth = 0.05f;
             lr.endWidth = 0.05f;
             lr.positionCount = 2;
-            lr.material = new Material(Shader.Find("Sprites/Default")); 
+            lr.material = new Material(Shader.Find("Sprites/Default"));
             lr.startColor = Color.red;
             lr.endColor = Color.red;
             rayLines[i] = lr;
@@ -50,7 +45,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (player == null || playerHealth == null) return;
+        if (player == null) return;
 
         Vector3 eyePos = transform.position + Vector3.up * eyeHeight;
         bool canSeePlayer = false;
@@ -67,11 +62,10 @@ public class Enemy : MonoBehaviour
 
             if (Physics.Raycast(eyePos, rayDir, out RaycastHit hit, viewDistance))
             {
-                endPoint = hit.point; 
+                endPoint = hit.point;
                 if (hit.transform == player)
                 {
                     canSeePlayer = true;
-                    Debug.Log("Player detected by enemy!");
                 }
             }
 
@@ -84,7 +78,7 @@ public class Enemy : MonoBehaviour
 
         if (canSeePlayer && Time.time - lastDamageTime >= damageCooldown)
         {
-            playerHealth.TakeDamage(damageAmount);
+            playerHealth?.onTakeDamage.Invoke(damageAmount); // Enemy triggers damage via event
             lastDamageTime = Time.time;
         }
     }
