@@ -26835,11 +26835,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &842440475 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6416031389217382678, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
-  m_PrefabInstance: {fileID: 6051198190574466547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &843086494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59329,7 +59324,7 @@ MonoBehaviour:
   playButton: {fileID: 771250923}
   quitButton: {fileID: 1753508293}
   pauseMenuUI: {fileID: 1442638621}
-  Options: {fileID: 0}
+  Options: {fileID: 1011425565}
 --- !u!114 &1589613999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81624,7 +81619,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429134390249619072, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_Value
-      value: 0.533
+      value: 0.303
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429134390249619072, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_MaxValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1780670139986853540, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_IsActive
@@ -81714,6 +81713,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2244490381041704454, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: inputActions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 38a234906003fd94898f9ba11c74685d, type: 3}
     - target: {fileID: 2500511479058636248, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -81745,11 +81748,19 @@ PrefabInstance:
     - target: {fileID: 3689758216280756762, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: Options
       value: 
-      objectReference: {fileID: 842440475}
+      objectReference: {fileID: 1011425565}
+    - target: {fileID: 3689758216280756762, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: PauseUi
+      value: 
+      objectReference: {fileID: 1442638621}
     - target: {fileID: 3689758216280756762, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1068605879}
+    - target: {fileID: 3689758216280756762, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3738912354839637433, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -81782,6 +81793,10 @@ PrefabInstance:
       propertyPath: Options
       value: 
       objectReference: {fileID: 1011425565}
+    - target: {fileID: 6157103178624372466, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6207343353654105857, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.533
