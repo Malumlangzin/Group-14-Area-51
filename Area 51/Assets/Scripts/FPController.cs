@@ -224,8 +224,8 @@ public class FPController : MonoBehaviour
 
     public void HandleLook()
     {
-        float mouseX = lookInput.x * lookSensitivity;
-        float mouseY = lookInput.y * lookSensitivity;
+        float mouseX = lookInput.x * SensitivityManager.value;
+        float mouseY = lookInput.y * SensitivityManager.value;
 
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
