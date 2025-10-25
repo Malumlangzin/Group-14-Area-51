@@ -19042,7 +19042,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 5, y: 5, z: 5}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -47978,7 +47978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7029948723529949830, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4292154010595695564, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -48122,7 +48122,7 @@ PrefabInstance:
       addedObject: {fileID: 1102565888}
     - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1102565885}
+      addedObject: {fileID: 1102565893}
   m_SourcePrefab: {fileID: 100100000, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
 --- !u!4 &1102565877 stripped
 Transform:
@@ -48176,28 +48176,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: cc90af0f58e1662449010fd3f379f943, type: 2}
   m_BuildHeightMesh: 0
---- !u!64 &1102565885
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102565878}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
 --- !u!64 &1102565888
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48220,6 +48198,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -629719859055844128, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
+--- !u!64 &1102565893
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102565878}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 8dbae4803b0b94c4d90887ca8f6ca5b7, type: 3}
 --- !u!1 &1108431834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3375951833439928018, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
@@ -49866,9 +49866,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.6
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -62143,9 +62143,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.6
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -70417,9 +70417,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.6
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -81725,6 +81725,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2244490381041704454, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 1032578076}
+    - target: {fileID: 2244490381041704454, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: inputActions
       value: 
       objectReference: {fileID: -944628639613478452, guid: 38a234906003fd94898f9ba11c74685d, type: 3}
@@ -81827,6 +81831,10 @@ PrefabInstance:
     - target: {fileID: 7995805920688296813, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300510456022835285, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
+      propertyPath: m_Name
+      value: Sensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 8521665367680835397, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
       propertyPath: slider
