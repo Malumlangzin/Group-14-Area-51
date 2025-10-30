@@ -320,10 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65024206162e30545817500ae7afb0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseUi: {fileID: 0}
   Options: {fileID: 0}
-  Volume: {fileID: 0}
-  Inventory: {fileID: 0}
+  PauseUi: {fileID: 0}
 --- !u!114 &408529496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +420,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -963,10 +961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65024206162e30545817500ae7afb0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseUi: {fileID: 0}
   Options: {fileID: 0}
-  Volume: {fileID: 0}
-  Inventory: {fileID: 0}
+  PauseUi: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
