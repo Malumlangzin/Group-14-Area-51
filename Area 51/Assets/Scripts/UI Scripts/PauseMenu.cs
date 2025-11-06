@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        menu = Controls.Menu.escape;
+        menu = Controls.Menu.Escape;
         menu.Enable();
 
         menu.performed += Pause;
