@@ -1,50 +1,47 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryWheelController : MonoBehaviour
 {
-    public Animator anim;
-    private bool InventoryWheelSelected = false;
-    public Image selectedItem;
-    public Sprite noImage;
-    public static int inventoryID;
+    public static InventoryWheelController Instance { get; private set; }
 
-    public void OnInventoryOpen(InputAction.CallbackContext context)
+    [Header("References")]
+    [SerializeField] private GameObject wheelPanel; 
+    [SerializeField] private Image selectedItemImage;
+    [SerializeField] private TMPro.TextMeshProUGUI selectedItemText;
+    [SerializeField] private Sprite noImage;
+
+    private bool isOpen = false;
+    private int currentItemID = 0;
+
+    private void Awake()
     {
-        if (context.performed)
-        {
-            InventoryWheelSelected = !InventoryWheelSelected;
-        }
+        if (Instance != null && Instance != this) Destroy(gameObject);
+        Instance = this;
+
+        if (wheelPanel != null) wheelPanel.SetActive(false);
     }
 
-    void Update()
+    public void OnInventoryToggle()
     {
+        ToggleWheel();
+    }
 
+    public void ToggleWheel()
+    {
+        isOpen = !isOpen;
+        if (wheelPanel != null) wheelPanel.SetActive(isOpen);
+    }
 
-        if (InventoryWheelSelected)
-        {
-            anim.SetBool("OpenInventoryWheel", true);
-        }
-        else
-        {
-            anim.SetBool("OpenInventoryWheel", false);
-        }
+    public void UpdateSelectedItem(int id, Sprite icon, string name)
+    {
+        currentItemID = id;
+        if (selectedItemImage) selectedItemImage.sprite = icon != null ? icon : noImage;
+        if (selectedItemText) selectedItemText.text = name ?? "";
+    }
 
-        switch (inventoryID)
-        {
-            case 0:
-                selectedItem.sprite = noImage;
-                break;
-            case 1:
-                print("Modulator");
-                break;
-            case 2:
-                print("Astromech socket");
-                break;
-            case 3:
-                print("Astromech socket");
-                break;
-        }
+    private void Update()
+    {
+        if (isOpen && currentItemID == 0 && selectedItemImage != null) selectedItemImage.sprite = noImage;
     }
 }
