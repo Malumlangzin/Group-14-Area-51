@@ -1,7 +1,16 @@
 using UnityEngine;
 
+<<<<<<< Updated upstream
 [System.Serializable]
 public class Item
+=======
+<<<<<<< HEAD
+public class Item : MonoBehaviour
+=======
+[System.Serializable]
+public class Item
+>>>>>>> c8a557d70e1d74ee7e9252c115c05f13bb199478
+>>>>>>> Stashed changes
 {
     public int id;
     public string itemName;

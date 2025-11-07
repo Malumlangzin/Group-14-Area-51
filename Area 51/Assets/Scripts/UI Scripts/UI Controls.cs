@@ -76,15 +76,13 @@ public class UIControls : MonoBehaviour
          PauseUi.SetActive(true);
          Time.timeScale = 0f;
      }
-
-    /* 
  
      public void OnStart(InputAction.CallbackContext context)
      {
          print("any key pressed");
-         SceneManager.LoadSceneAsync(1);
+         SceneManager.LoadSceneAsync(2);
      }
-
+    /*
      public void OnPause()
      {
          PauseUi.SetActive(true);
