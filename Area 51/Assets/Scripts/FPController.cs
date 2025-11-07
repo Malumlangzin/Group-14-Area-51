@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
-    public float gravity = -29.81f;
+    public float gravity = -19.81f;
     public float currentSpeed;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
+    public float lookSensitivity = 0.6f;
     public float verticalLookLimit = 90f;
 
     [Header("Crouch Settings")]
@@ -19,8 +21,9 @@ public class FPController : MonoBehaviour
     public bool isCrouching = false;
 
     [Header("Jump Settings")]
-    public float jumpHeight = 2f;
+    public float jumpHeight = 3.5f;
     public float jumpBoostMultiplier = 1f;
+    private bool jumpRequested = false;
 
     [Header("Run Settings")]
     public float runSpeed = 20f;
@@ -42,17 +45,18 @@ public class FPController : MonoBehaviour
     public float throwForce = 10f;
     public float throwUpwardBoost = 2f;
 
+    [Header("Animation Settings")]
+    public Animator animator;
+
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
 
-
     private void Awake()
     {
         currentSpeed = moveSpeed;
-
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -60,17 +64,14 @@ public class FPController : MonoBehaviour
         if (cameraTransform != null)
             playerCamera = cameraTransform.GetComponent<Camera>();
 
-        normalFOV = 60f;
-
         if (playerCamera != null)
             playerCamera.fieldOfView = normalFOV;
-        else
-            Debug.LogWarning("FPController: cameraTransform or Camera component not set.");
     }
 
     private void Update()
     {
         HandleMovement();
+        HandleJump();
         HandleLook();
 
         if (playerCamera != null)
@@ -78,6 +79,8 @@ public class FPController : MonoBehaviour
 
         if (heldObject != null)
             heldObject.MoveToHoldPoint(holdPoint.position);
+
+        Debug.Log($"PlayerY: {transform.position.y:F3} | Grounded: {controller.isGrounded} | velY: {velocity.y:F3}");
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -93,24 +96,17 @@ public class FPController : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             isCrouching = true;
-        }
         else if (context.canceled)
-        {
             isCrouching = false;
-        }
 
         HandleCrouch();
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
-        if (context.performed && controller.isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(-2f * gravity * jumpHeight) * jumpBoostMultiplier;
-        }
+        if (context.performed)
+            jumpRequested = true;
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -141,28 +137,20 @@ public class FPController : MonoBehaviour
     public void OnZoomIn(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             normalFOV = zoomedInFOV;
-        }
     }
 
     public void OnZoomOut(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             normalFOV = zoomedOutFOV;
-        }
     }
 
     public void OnNormal(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
-            normalFOV = 60f; 
-        }
+            normalFOV = 60f;
     }
-
-
 
     public void OnPickUp(InputAction.CallbackContext context)
     {
@@ -171,15 +159,12 @@ public class FPController : MonoBehaviour
         if (heldObject == null)
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 Tools pickup = hit.collider.GetComponent<Tools>();
-
                 if (pickup != null)
                 {
                     pickup.PickUp(holdPoint);
-
                     heldObject = pickup;
                     currentSpeed = carrySpeed;
                 }
@@ -210,10 +195,30 @@ public class FPController : MonoBehaviour
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        if (controller.isGrounded && velocity.y < 0)
+        float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
+        animator.SetFloat("Speed", movementMagnitude);
+    }
+
+    public void HandleJump()
+    {
+        if (controller.isGrounded)
+        {
             velocity.y = -2f;
 
-        velocity.y += gravity * Time.deltaTime;
+            if (jumpRequested)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity) * jumpBoostMultiplier;
+                jumpRequested = false;
+            }
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        if (velocity.y < -50f)
+            velocity.y = -50f;
+
         controller.Move(velocity * Time.deltaTime);
     }
 
@@ -223,8 +228,7 @@ public class FPController : MonoBehaviour
         float mouseY = lookInput.y * SensitivityManager.value;
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,
-        verticalLookLimit);
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
 
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
@@ -247,29 +251,16 @@ public class FPController : MonoBehaviour
     public void HandleRun()
     {
         if (moveInput.magnitude > 0)
-        {
             currentSpeed = runSpeed;
-        }
         else
-        {
             currentSpeed = moveSpeed;
-        }
+
+        float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
+        animator.SetFloat("Speed", movementMagnitude);
     }
 
-    public void HandleJump()
-    {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = 1f;
-        }
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
     public void Quitgame()
     {
-        print("Quitgame");
         Application.Quit();
     }
-
 }

@@ -97,15 +97,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MiniMap",
-                    "type": "Button",
-                    "id": "befa914c-f44a-427f-acb7-4dfdf60c3069",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ZoomIn",
                     "type": "Value",
                     "id": "f6e27621-c48c-4588-b690-21553adc7c06",
@@ -127,6 +118,15 @@
                     "name": "Normal",
                     "type": "Button",
                     "id": "602da915-47ff-40b9-8aa7-2266a5ab98d3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "0d3bc871-61ba-45f4-93d6-70a696ee6c52",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -456,22 +456,11 @@
                 {
                     "name": "",
                     "id": "ca1da012-3811-4227-981d-afab1cd03c77",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toobar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ddd84f0-edd0-469a-9b6c-8f38f5b61746",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiniMap",
+                    "action": "Toobar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -505,6 +494,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "Normal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f1541d1-1641-4211-9ec9-65d451d84bd3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbbea5c1-75e7-4919-8d1d-ab768fd40aa4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "c9d3cea5-9462-48b8-bcd5-a4463b9cb94f",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "811e9ba7-4b51-4ed1-aa29-7d443c8432c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f718e38b-a33a-4d14-8d58-434aaf20e16c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
