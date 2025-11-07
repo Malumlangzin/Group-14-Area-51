@@ -1,62 +1,31 @@
-using UnityEngine;
-using UnityEngine.Rendering;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class Inventory : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField]
-    InventoryUI ui;
-    [SerializeField]
-    AudioSource audioSource;
+    [SerializeField] private List<Item> items = new();
 
-    [Header("Prefabs")]
-    [SerializeField]
-    GameObject droppedItemPrefab;
+    public event Action<string, Item> OnItemAdded;
+    public event Action<string> OnItemRemoved;
 
-    [Header("Audio Clips")]
-    [SerializeField]
-    AudioClip pickUpItemAudio;
-    [SerializeField]
-    AudioClip dropItemAudio;
-
-    [Header("State")]
-    [SerializeField]
-    SerializedDictionary<string, Item> inventory = new();
-
-    public void OnTriggerEnter(Collider other)
+    public void AddItem(Item item)
     {
-        if (other.CompareTag("DroppedItem"))
-        {
-            var droppedItem = other.GetComponent<DroppedItem>();
-            if (droppedItem.pickedUp)
-            {
-                return;
-            }
-            droppedItem.pickedUp = true;
-            AddItem(droppedItem.item);
-            Destroy(other.gameObject);
-            audioSource.PlayOneShot(pickUpItemAudio);
-        }
+        string id = Guid.NewGuid().ToString();
+        items.Add(item);
+        OnItemAdded?.Invoke(id, item);
     }
 
-    void AddItem(Item item)
+    public void RemoveItem(string inventoryId)
     {
-        var inventoryId = Guid.NewGuid().ToString();
-        inventory.Add(inventoryId, item);
-        ui.AddUIItem(inventoryId, item);
+        OnItemRemoved?.Invoke(inventoryId);
     }
 
     public void DropItem(string inventoryId)
     {
-        var droppedItem = Instantiate(droppedItemPrefab, transform.position,Quaternion.identity).GetComponent<DroppedItem>();
-        var item = inventory.GetValueOrDefault(inventoryId);
-        droppedItem.Initialize(item);
-        inventory.Remove(inventoryId);
-        ui.RemoveUIItem(inventoryId);
-        audioSource.PlayOneShot(dropItemAudio);
+        Debug.Log($"Drop requested for item UI id: {inventoryId}");
+        RemoveItem(inventoryId);
     }
+
+    public List<Item> GetItems() => items;
 }
