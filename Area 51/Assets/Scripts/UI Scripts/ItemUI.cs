@@ -24,9 +24,9 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         this.inventoryId = id;
         this.dropAction = dropAction;
-        ID = item.id;
+        /*ID = item.id;
         ItemName = item.itemName;
-        Icon = item.icon;
+        Icon = item.icon;*/
 
         if (iconImage) iconImage.sprite = Icon;
         if (nameText) nameText.text = "";

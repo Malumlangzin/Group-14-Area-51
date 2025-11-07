@@ -88,15 +88,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Toobar",
-                    "type": "Button",
-                    "id": "29d05016-3ede-4780-8a6b-5c0d3d6dd751",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ZoomIn",
                     "type": "Value",
                     "id": "f6e27621-c48c-4588-b690-21553adc7c06",
@@ -455,17 +446,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ca1da012-3811-4227-981d-afab1cd03c77",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toobar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3e49af73-24e5-4aa9-b133-de65690c2f3a",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -501,17 +481,6 @@
                     "name": "",
                     "id": "7f1541d1-1641-4211-9ec9-65d451d84bd3",
                     "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dbbea5c1-75e7-4919-8d1d-ab768fd40aa4",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

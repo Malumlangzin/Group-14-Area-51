@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryUIManager : MonoBehaviour
 {
@@ -11,7 +12,30 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private Transform uiInventoryParent; 
 
     private readonly Dictionary<string, ItemUI> inventoryUI = new();
+    public GameObject InventoryMenu;
+    private bool menuActivated;
 
+   /* public void Inventory(InputAction.CallbackContext context)
+    {
+
+    }*/
+
+    public void Inventory(InputAction.CallbackContext context)
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+          if (Input.GetButtonDown("Inventory") && menuActivated)
+          {
+             InventoryMenu.SetActive(false);
+             menuActivated = true;
+          }
+          if (Input.GetButtonDown("Inventory") && !menuActivated)
+          {
+             InventoryMenu.SetActive(true);
+             menuActivated = false;
+          } 
+        }
+    }
     private void OnEnable()
     {
         if (inventory != null)
@@ -62,4 +86,10 @@ public class InventoryUIManager : MonoBehaviour
     {
         InventoryWheelController.Instance?.UpdateSelectedItem(itemID, icon, itemName);
     }
+
+    public void AddItem(string itemName, string itemDescription, Sprite sprite)
+    {
+        print("itemName = " + itemName + "itemDescription =" + itemDescription + "itemSprite = " + sprite);
+    }
+
 }

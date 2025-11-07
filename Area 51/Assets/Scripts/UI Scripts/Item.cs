@@ -1,29 +1,34 @@
 using UnityEngine;
 
-<<<<<<< Updated upstream
-[System.Serializable]
-public class Item
-=======
-<<<<<<< HEAD
-public class Item : MonoBehaviour
-=======
-[System.Serializable]
-public class Item
->>>>>>> c8a557d70e1d74ee7e9252c115c05f13bb199478
->>>>>>> Stashed changes
-{
-    public int id;
-    public string itemName;
-    public Sprite icon;
-    public string description;
-    public GameObject prefab;
 
-    public Item(int id, string name, Sprite icon, string description = "", GameObject prefab = null)
+public class Item : MonoBehaviour
+{
+
+    [SerializeField]
+    private string itemName;
+
+    [SerializeField]
+    private string itemDescription;
+
+    [SerializeField]    
+    private Sprite sprite;
+
+    private InventoryUIManager inventoryUIManager;
+
+
+    void Start()
     {
-        this.id = id;
-        this.itemName = name;
-        this.icon = icon;
-        this.description = description;
-        this.prefab = prefab;
+        inventoryUIManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryUIManager>();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            inventoryUIManager.AddItem(itemName, itemDescription , sprite);
+            Destroy(gameObject);
+        }
+    }
+
+ 
 }
