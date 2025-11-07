@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -6,79 +7,119 @@ using UnityEngine.SceneManagement;
 
 public class UIControls : MonoBehaviour
 {
+    public static bool GameIsPaused = false;
+    public GameObject Options; 
     public GameObject PauseUi;
-    public GameObject Options;
     public GameObject Volume;
-    public GameObject Inventory;
-    public void OnStart(InputAction.CallbackContext context)
+
+    private void Update()
     {
-        print("any key pressed");
-        SceneManager.LoadSceneAsync(1);
-    }
-   
-    public void OnPause()
-    {
-        PauseUi.SetActive(true);
-
-        Cursor.visible = true;
-
-        Time.timeScale = 0f;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
-    public void OnVolume()
+
+    public void Resume()
     {
-        Volume.SetActive(true);
-
-        Cursor.visible = true;
-
-        Time.timeScale = 0f;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-    public void OnOptionsPress()
-    {
-        Options.SetActive(true);
         PauseUi.SetActive(false);
-        Time.timeScale = 0f;
-    }
-
-    public void OnInventory()
-    {
-        Inventory.SetActive(true);
-    }
-    public void OnVolBack()
-    {
-        Volume.SetActive(false);
         Time.timeScale = 1.0f;
-    }
-
-    public void OnBackPress()
-    {
-        Options.SetActive(false);
-        PauseUi.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public void Quitgame()
-    {
-        print("Quitgame");
-        Application.Quit();
-    }
-    
-
-    public void OnPlayPress()
-    {
-        PauseUi.SetActive(false);
-
+        GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        Time.timeScale = 1.0f;
     }
+
+    void Pause()
+    {
+        PauseUi.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void LoadMenu()
+    {
+        Debug.Log("Loading menu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+    }
+     public void OnOptionsPress()
+     {
+         Options.SetActive(true);
+         PauseUi.SetActive(false);
+         Time.timeScale = 0f;
+     } 
+    
+    public void OnVolume()
+    {
+         Volume.SetActive(true);
+         Cursor.visible = true;
+
+         Time.timeScale = 0f;
+
+         Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
+    }
+     public void OnBackPress()
+     {
+         Options.SetActive(false);
+         PauseUi.SetActive(true);
+         Time.timeScale = 0f;
+     }
+
+    /* 
+ 
+     public void OnStart(InputAction.CallbackContext context)
+     {
+         print("any key pressed");
+         SceneManager.LoadSceneAsync(1);
+     }
+
+     public void OnPause()
+     {
+         PauseUi.SetActive(true);
+
+         Cursor.visible = true;
+
+         Time.timeScale = 0f;
+
+         Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
+
+     }
+
+     public void OnVolBack()
+     {
+         Volume.SetActive(false);
+         Time.timeScale = 1.0f;
+     }
+
+
+     public void Quitgame()
+     {
+         print("Quitgame");
+         Application.Quit();
+     }
+
+
+     public void OnPlayPress()
+     {
+         PauseUi.SetActive(false);
+
+         Cursor.lockState = CursorLockMode.Locked;
+         Cursor.visible = false;
+
+         Time.timeScale = 1.0f;
+     }*/
 
 }

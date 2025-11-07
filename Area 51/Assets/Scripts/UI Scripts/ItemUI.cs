@@ -1,27 +1,57 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System;
-using Unity.VisualScripting;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-
-public class ItemUI : MonoBehaviour
+public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header("References")]
-    [SerializeField]
-    Image image;
-    [SerializeField]
-    Button button;
+    private string inventoryId;
+    private System.Action<string> dropAction;
 
-    public void Initialize(string inventoryId, Item item, Action<string> removeItemAction)
+    public int ID { get; private set; }
+    public string ItemName { get; private set; }
+    public Sprite Icon { get; private set; }
+
+    [Header("UI refs")]
+    [SerializeField] private Image iconImage;          
+    [SerializeField] private TextMeshProUGUI nameText;   
+    [SerializeField] private GameObject hoverHighlight; 
+
+    public static event Action<int, Sprite, string> OnItemSelected;
+
+    public void Initialize(string id, Item item, System.Action<string> dropAction)
     {
-        image.sprite = item.icon;
-        transform.localScale = Vector3.one;
-        button.onClick.AddListener(() => removeItemAction.Invoke(inventoryId));
+        this.inventoryId = id;
+        this.dropAction = dropAction;
+        ID = item.id;
+        ItemName = item.itemName;
+        Icon = item.icon;
 
+        if (iconImage) iconImage.sprite = Icon;
+        if (nameText) nameText.text = "";
+        if (hoverHighlight) hoverHighlight.SetActive(false);
     }
 
-    void OnDestroy()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        button.onClick.RemoveAllListeners();
+        OnItemSelected?.Invoke(ID, Icon, ItemName);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hoverHighlight) hoverHighlight.SetActive(true);
+        if (nameText) nameText.text = ItemName;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hoverHighlight) hoverHighlight.SetActive(false);
+        if (nameText) nameText.text = "";
+    }
+
+    public void DropThisItem()
+    {
+        dropAction?.Invoke(inventoryId);
     }
 }
