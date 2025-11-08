@@ -115,9 +115,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Inventory",
+                    "name": "ToggleInventory",
                     "type": "Button",
-                    "id": "0d3bc871-61ba-45f4-93d6-70a696ee6c52",
+                    "id": "1b569a93-859e-435c-affb-afa2d8ad0825",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "858963f9-3ab8-4f23-9c90-bed877236fe0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -479,12 +488,45 @@
                 },
                 {
                     "name": "",
-                    "id": "7f1541d1-1641-4211-9ec9-65d451d84bd3",
+                    "id": "1b7822ba-b7cf-4ae4-9598-603566f68075",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Inventory",
+                    "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d1fc47d-25ab-4e67-bf06-2b6ec4f8129f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "646b9161-af63-4b3e-825d-96128dc63c89",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9126a27b-3361-4936-b7a9-28849e619930",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
