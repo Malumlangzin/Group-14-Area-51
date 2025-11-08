@@ -8,6 +8,13 @@ public class ItemPickup : MonoBehaviour
 
     [SerializeField] private InventoryUIManager inventoryUIManager;
 
+    private void Awake()
+    {
+        if (inventoryUIManager == null)
+        {
+            inventoryUIManager = GameObject.Find("Inventory").GetComponent<InventoryUIManager>();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
