@@ -1,65 +1,64 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryUIManager : MonoBehaviour
 {
-    [Header("Prefabs")]
-    [SerializeField] private GameObject uiItemPrefab;
+    [SerializeField] private GameObject inventoryMenu;
+    private bool menuActive;
+    public ItemSlot[] ItemSlot;
 
-    [Header("References")]
-    [SerializeField] private Inventory inventory;
-    [SerializeField] private Transform uiInventoryParent; 
+    [SerializeField] private List<Tools> allTools = new List<Tools>();
 
-    private readonly Dictionary<string, ItemUI> inventoryUI = new();
-
-    private void OnEnable()
+    private void Awake()
     {
-        if (inventory != null)
-        {
-            inventory.OnItemAdded += AddUIItem;
-            inventory.OnItemRemoved += RemoveUIItem;
-        }
-        ItemUI.OnItemSelected += HandleItemSelected;
+        inventoryMenu.SetActive(false);
     }
 
-    private void OnDisable()
+    public void OnToggleInventory(InputAction.CallbackContext context)
     {
-        if (inventory != null)
+        if (context.performed)
         {
-            inventory.OnItemAdded -= AddUIItem;
-            inventory.OnItemRemoved -= RemoveUIItem;
-        }
-        ItemUI.OnItemSelected -= HandleItemSelected;
-    }
+            menuActive = !menuActive;
+            inventoryMenu.SetActive(menuActive);
+            Time.timeScale = menuActive ? 0f : 1f;
 
-    private void AddUIItem(string inventoryId, Item item)
-    {
-        if (uiItemPrefab == null || uiInventoryParent == null) return;
-
-        var go = Instantiate(uiItemPrefab, uiInventoryParent);
-        var itemUI = go.GetComponent<ItemUI>();
-        if (itemUI == null)
-        {
-            Debug.LogError("uiItemPrefab is missing ItemUI component.");
-            Destroy(go);
-            return;
-        }
-
-        itemUI.Initialize(inventoryId, item, inventory.DropItem);
-        inventoryUI[inventoryId] = itemUI;
-    }
-
-    private void RemoveUIItem(string inventoryId)
-    {
-        if (inventoryUI.TryGetValue(inventoryId, out var itemUI))
-        {
-            Destroy(itemUI.gameObject);
-            inventoryUI.Remove(inventoryId);
+            Cursor.visible = menuActive;
+            Cursor.lockState = menuActive ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 
-    private void HandleItemSelected(int itemID, Sprite icon, string itemName)
+    public void AddItem(string itemName, int quantity, Sprite itemIcon)
     {
-        InventoryWheelController.Instance?.UpdateSelectedItem(itemID, icon, itemName);
+        for (int  i = 0;  i < ItemSlot.Length;  i++)
+        {
+            if (ItemSlot[i].isFull == false)
+            {   ItemSlot[i].AddItem(itemName, quantity, itemIcon);
+                return;
+            }
+        }
+
     }
+
+    public void DeselectAllSlots()
+        {
+        for (int i = 0; i < ItemSlot.Length; i++)
+        {
+     
+            ItemSlot[i].selectedShader.SetActive(false);
+            ItemSlot[i].isSelected = false;
+        }
+    }
+
+    public GameObject GetPrefabForItem(string itemName)
+    {
+        foreach (var tool in allTools) 
+        {
+            if (tool.Id == itemName)
+                return tool.Prefab;
+        }
+        return null;
+    }
+
 }
+
