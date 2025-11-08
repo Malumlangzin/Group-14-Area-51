@@ -210,13 +210,31 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightClick"",
+                    ""name"": ""SelectItem"",
                     ""type"": ""Button"",
-                    ""id"": ""858963f9-3ab8-4f23-9c90-bed877236fe0"",
+                    ""id"": ""fd3bc45e-96fa-4ab2-91c8-1c27e1eef923"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""942e53d2-171e-42d7-a4f7-af3e363da0e1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Value"",
+                    ""id"": ""3c57799c-a0d9-4705-a1c7-8e2aedb59fa6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -586,7 +604,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3d1fc47d-25ab-4e67-bf06-2b6ec4f8129f"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -596,23 +614,166 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""646b9161-af63-4b3e-825d-96128dc63c89"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""b8ceda40-90a0-4ec0-9f3d-50196be7a69a"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightClick"",
+                    ""action"": ""SelectItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9126a27b-3361-4936-b7a9-28849e619930"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""2bc17edf-30f7-4ffa-b5bb-16ee24948bf7"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightClick"",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27026dab-cd91-44a3-b72a-7b78c47f10d4"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""734cf797-d899-4231-8035-aaf59e0d0c74"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WSAD"",
+                    ""id"": ""213e2cdc-fca9-4d7a-badb-90d3c6fa697d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3ffb56a8-c710-4abf-82aa-528598ae3ab6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""699bdf6a-f961-4004-8770-b5e86abbb5cf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8a4ca205-266e-472a-9084-fc31a90a6c51"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""01aa0ef5-9a7a-41ed-a58f-2f9f77aab597"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""eb7e4488-dce1-4600-afa7-0355ae9a5976"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""03706a99-3314-4aaa-8ff5-8e8fa1b841f0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""38c53116-18d3-4fb9-805b-8dcd9b7ce565"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7318d971-df59-4fad-976a-bf8bab00a8de"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e4b944c9-ce20-403f-bd54-a714312c8891"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3d8e5e7-d762-4633-a6bd-bad226dbc3a7"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -664,7 +825,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_ZoomOut = m_Player.FindAction("ZoomOut", throwIfNotFound: true);
         m_Player_Normal = m_Player.FindAction("Normal", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
-        m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
+        m_Player_SelectItem = m_Player.FindAction("SelectItem", throwIfNotFound: true);
+        m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+        m_Player_Navigate = m_Player.FindAction("Navigate", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Escape = m_Menu.FindAction("Escape", throwIfNotFound: true);
@@ -762,7 +925,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ZoomOut;
     private readonly InputAction m_Player_Normal;
     private readonly InputAction m_Player_ToggleInventory;
-    private readonly InputAction m_Player_RightClick;
+    private readonly InputAction m_Player_SelectItem;
+    private readonly InputAction m_Player_DropItem;
+    private readonly InputAction m_Player_Navigate;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -827,9 +992,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         /// <summary>
-        /// Provides access to the underlying input action "Player/RightClick".
+        /// Provides access to the underlying input action "Player/SelectItem".
         /// </summary>
-        public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
+        public InputAction @SelectItem => m_Wrapper.m_Player_SelectItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/DropItem".
+        /// </summary>
+        public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Navigate".
+        /// </summary>
+        public InputAction @Navigate => m_Wrapper.m_Player_Navigate;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -895,9 +1068,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ToggleInventory.started += instance.OnToggleInventory;
             @ToggleInventory.performed += instance.OnToggleInventory;
             @ToggleInventory.canceled += instance.OnToggleInventory;
-            @RightClick.started += instance.OnRightClick;
-            @RightClick.performed += instance.OnRightClick;
-            @RightClick.canceled += instance.OnRightClick;
+            @SelectItem.started += instance.OnSelectItem;
+            @SelectItem.performed += instance.OnSelectItem;
+            @SelectItem.canceled += instance.OnSelectItem;
+            @DropItem.started += instance.OnDropItem;
+            @DropItem.performed += instance.OnDropItem;
+            @DropItem.canceled += instance.OnDropItem;
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
         }
 
         /// <summary>
@@ -948,9 +1127,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ToggleInventory.started -= instance.OnToggleInventory;
             @ToggleInventory.performed -= instance.OnToggleInventory;
             @ToggleInventory.canceled -= instance.OnToggleInventory;
-            @RightClick.started -= instance.OnRightClick;
-            @RightClick.performed -= instance.OnRightClick;
-            @RightClick.canceled -= instance.OnRightClick;
+            @SelectItem.started -= instance.OnSelectItem;
+            @SelectItem.performed -= instance.OnSelectItem;
+            @SelectItem.canceled -= instance.OnSelectItem;
+            @DropItem.started -= instance.OnDropItem;
+            @DropItem.performed -= instance.OnDropItem;
+            @DropItem.canceled -= instance.OnDropItem;
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
         }
 
         /// <summary>
@@ -1179,12 +1364,26 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleInventory(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "RightClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SelectItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRightClick(InputAction.CallbackContext context);
+        void OnSelectItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DropItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDropItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Navigate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigate(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
