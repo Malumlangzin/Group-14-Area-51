@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Video;
 using Unity.VisualScripting;
 
-[RequireComponent(typeof(Collider))]
+/*[RequireComponent(typeof(Collider))]
 public class DroppedItem : MonoBehaviour
 {
     [Header("Settings")]
@@ -39,4 +39,4 @@ public class DroppedItem : MonoBehaviour
         yield return new WaitForSeconds(delay);
         GetComponent<Collider>().enabled = true;
     }
-}
+}*/

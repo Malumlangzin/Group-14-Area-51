@@ -322,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Options: {fileID: 0}
   PauseUi: {fileID: 0}
+  Volume: {fileID: 0}
 --- !u!114 &408529496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,8 +509,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Objective is to collect the tools around the area that were left behind
-    and bring them to the space ship.\r \n\nUse W,A,S,D to move.  Left Control/Right
+  m_text: "Objective is to collect the tools around the area that were left behind.\r
+    \n\nUse W,A,S,D to move.  Tab is to access your inventory. Left Control/Right
     stick press to crouch. Space/Button south to jump. Shift/left stick press to
     run. E/Button east to pickup. G/Left shoulder/Right click to throw.\n\nPress
     any key to Play."
@@ -963,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Options: {fileID: 0}
   PauseUi: {fileID: 0}
+  Volume: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
