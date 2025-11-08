@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
-    private bool menuActive;
+    [SerializeField] private List<Tools> allTools = new List<Tools>();
     public ItemSlot[] ItemSlot;
 
-    [SerializeField] private List<Tools> allTools = new List<Tools>();
+    private bool menuActive;
+    private int currentSlotIndex = 0;
 
     private void Awake()
     {
@@ -17,48 +18,99 @@ public class InventoryUIManager : MonoBehaviour
 
     public void OnToggleInventory(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            menuActive = !menuActive;
-            inventoryMenu.SetActive(menuActive);
-            Time.timeScale = menuActive ? 0f : 1f;
+        if (!context.performed) return;
 
-            Cursor.visible = menuActive;
-            Cursor.lockState = menuActive ? CursorLockMode.None : CursorLockMode.Locked;
+        menuActive = !menuActive;
+        inventoryMenu.SetActive(menuActive);
+        Time.timeScale = menuActive ? 0f : 1f;
+
+        Cursor.visible = menuActive;
+        Cursor.lockState = menuActive ? CursorLockMode.None : CursorLockMode.Locked;
+
+        if (menuActive)
+        {
+            currentSlotIndex = 0;
+            HighlightCurrentSlot();
+        }
+        else
+        {
+            DeselectAllSlots();
         }
     }
 
     public void AddItem(string itemName, int quantity, Sprite itemIcon)
     {
-        for (int  i = 0;  i < ItemSlot.Length;  i++)
+        for (int i = 0; i < ItemSlot.Length; i++)
         {
-            if (ItemSlot[i].isFull == false)
-            {   ItemSlot[i].AddItem(itemName, quantity, itemIcon);
+            if (!ItemSlot[i].isFull)
+            {
+                ItemSlot[i].AddItem(itemName, quantity, itemIcon);
                 return;
             }
         }
-
     }
 
     public void DeselectAllSlots()
+    {
+        foreach (var slot in ItemSlot)
         {
-        for (int i = 0; i < ItemSlot.Length; i++)
-        {
-     
-            ItemSlot[i].selectedShader.SetActive(false);
-            ItemSlot[i].isSelected = false;
+            slot.selectedShader.SetActive(false);
+            slot.isSelected = false;
         }
+    }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+        if (!menuActive || !context.performed) return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+
+        if (input.x > 0.5f) MoveSelection(1);    
+        else if (input.x < -0.5f) MoveSelection(-1); 
+    }
+
+ 
+    public void OnSelectItem(InputAction.CallbackContext context)
+    {
+        if (menuActive && context.performed)
+            ItemSlot[currentSlotIndex].OnRightClickInput();
+    }
+
+
+    public void OnDropItem(InputAction.CallbackContext context)
+    {
+        if (menuActive && context.performed)
+            ItemSlot[currentSlotIndex].OnLeftClickInput();
+    }
+
+    private void MoveSelection(int direction)
+    {
+        DeselectAllSlots();
+
+        currentSlotIndex += direction;
+
+        if (currentSlotIndex >= ItemSlot.Length)
+            currentSlotIndex = 0;
+        else if (currentSlotIndex < 0)
+            currentSlotIndex = ItemSlot.Length - 1;
+
+        HighlightCurrentSlot();
+    }
+
+    private void HighlightCurrentSlot()
+    {
+        DeselectAllSlots();
+        ItemSlot[currentSlotIndex].selectedShader.SetActive(true);
+        ItemSlot[currentSlotIndex].isSelected = true;
     }
 
     public GameObject GetPrefabForItem(string itemName)
     {
-        foreach (var tool in allTools) 
+        foreach (var tool in allTools)
         {
             if (tool.Id == itemName)
                 return tool.Prefab;
         }
         return null;
     }
-
 }
-
