@@ -79,8 +79,6 @@ public class FPController : MonoBehaviour
 
         if (heldObject != null)
             heldObject.MoveToHoldPoint(holdPoint.position);
-
-        Debug.Log($"PlayerY: {transform.position.y:F3} | Grounded: {controller.isGrounded} | velY: {velocity.y:F3}");
     }
 
     public void OnMovement(InputAction.CallbackContext context)

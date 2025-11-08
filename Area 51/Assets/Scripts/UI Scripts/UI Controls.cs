@@ -42,11 +42,8 @@ public class UIControls : MonoBehaviour
         PauseUi.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-    }
-
-    public void LoadMenu()
-    {
-        Debug.Log("Loading menu");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void QuitGame()

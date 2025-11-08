@@ -60,7 +60,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3165443816558645109, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -70,6 +71,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7199452575452690038, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3918344929654578447}
+    - targetCorrespondingSourceObject: {fileID: 7199452575452690038, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 825419101407723380}
   m_SourcePrefab: {fileID: 100100000, guid: bf940e670777a2349a63bbc185bdd339, type: 3}
 --- !u!1 &1629106512906369226 stripped
 GameObject:
@@ -124,3 +128,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &825419101407723380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629106512906369226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2237adc3b22f55f44b3427ae4ee5512c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: Modulator
+  description: Modulator
+  icon: {fileID: 21300000, guid: 78283a26946a3a44ba16e21eb3987393, type: 3}
+  Prefab: {fileID: 1629106512906369226}
