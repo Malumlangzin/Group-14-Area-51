@@ -781,12 +781,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Menu"",
-            ""id"": ""c9d3cea5-9462-48b8-bcd5-a4463b9cb94f"",
+            ""id"": ""ab76f020-efb9-4f28-b5b9-9741cc75e3bc"",
             ""actions"": [
                 {
                     ""name"": ""Escape"",
                     ""type"": ""Button"",
-                    ""id"": ""811e9ba7-4b51-4ed1-aa29-7d443c8432c4"",
+                    ""id"": ""af87d4dd-d6f6-4529-b415-a01736066b6b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -796,7 +796,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""f718e38b-a33a-4d14-8d58-434aaf20e16c"",
+                    ""id"": ""f3229b08-1fc2-4a81-8249-db0e60e171dd"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
