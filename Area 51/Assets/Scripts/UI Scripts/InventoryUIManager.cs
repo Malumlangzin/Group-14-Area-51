@@ -2,10 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
+public class ToolReference
+{
+    public string Id;
+    public GameObject Prefab;
+}
+
 public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
-    [SerializeField] private List<Tools> allTools = new List<Tools>();
+    [SerializeField] private List<ToolReference> allTools = new List<ToolReference>();
     public ItemSlot[] ItemSlot;
 
     private bool menuActive;
@@ -40,11 +47,11 @@ public class InventoryUIManager : MonoBehaviour
 
     public void AddItem(string itemName, int quantity, Sprite itemIcon)
     {
-        for (int i = 0; i < ItemSlot.Length; i++)
+        foreach (var slot in ItemSlot)
         {
-            if (!ItemSlot[i].isFull)
+            if (!slot.isFull)
             {
-                ItemSlot[i].AddItem(itemName, quantity, itemIcon);
+                slot.AddItem(itemName, quantity, itemIcon);
                 return;
             }
         }
@@ -65,17 +72,17 @@ public class InventoryUIManager : MonoBehaviour
 
         Vector2 input = context.ReadValue<Vector2>();
 
-        if (input.x > 0.5f) MoveSelection(1);    
-        else if (input.x < -0.5f) MoveSelection(-1); 
+        if (input.x > 0.5f)
+            MoveSelection(1);
+        else if (input.x < -0.5f)
+            MoveSelection(-1);
     }
 
- 
     public void OnSelectItem(InputAction.CallbackContext context)
     {
         if (menuActive && context.performed)
             ItemSlot[currentSlotIndex].OnRightClickInput();
     }
-
 
     public void OnDropItem(InputAction.CallbackContext context)
     {
@@ -111,6 +118,8 @@ public class InventoryUIManager : MonoBehaviour
             if (tool.Id == itemName)
                 return tool.Prefab;
         }
+
+        Debug.LogWarning($"No prefab assigned for item: {itemName}");
         return null;
     }
 }
