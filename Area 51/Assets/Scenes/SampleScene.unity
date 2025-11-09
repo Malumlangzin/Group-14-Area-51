@@ -10248,9 +10248,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryMenu: {fileID: 177449398}
   allTools:
-  - {fileID: 1050315766}
-  - {fileID: 1189416680}
-  - {fileID: 0}
+  - Id: Modulator
+    Prefab: {fileID: 1629106512906369226, guid: 56be5e712e2c3a14db479a18e0b580d8, type: 3}
+  - Id: Hyperdrive
+    Prefab: {fileID: 2312677532298777077, guid: f515702dbc04e344b91e56233d847b64, type: 3}
+  - Id: Astromech Socket
+    Prefab: {fileID: 662578005587753873, guid: 140ac5ef6d2c53f4095e4f28d164d0fb, type: 3}
   ItemSlot:
   - {fileID: 1305976018}
   - {fileID: 200127308}
@@ -10451,6 +10454,76 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &180914971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180914972}
+  - component: {fileID: 180914974}
+  - component: {fileID: 180914973}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180914972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180914971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 298485808}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &180914973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180914971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e96dde7327f8a942978a6385c6c7a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Astromech Socket
+  quantity: 1
+  itemIcon: {fileID: 21300000, guid: 0d0d67cae815fc844b8b97e69f1188f3, type: 3}
+  inventoryUIManager: {fileID: 177449405}
+--- !u!65 &180914974
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180914971}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &189352587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3375951833439928018, guid: a5f42a2f67396a446aa963eeb11c1a34, type: 3}
@@ -11491,7 +11564,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e201db60ee5845a4193442352c74d651, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180914972}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e201db60ee5845a4193442352c74d651, type: 3}
       insertIndex: -1
@@ -70621,17 +70697,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1189416680 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1215333869542874383, guid: f515702dbc04e344b91e56233d847b64, type: 3}
-  m_PrefabInstance: {fileID: 207097608561967048}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848339232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2237adc3b22f55f44b3427ae4ee5512c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1189416683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107513,6 +107578,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7894144526180848484, guid: f515702dbc04e344b91e56233d847b64, type: 3}
+      propertyPath: inventoryUIManager
+      value: 
+      objectReference: {fileID: 177449405}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
