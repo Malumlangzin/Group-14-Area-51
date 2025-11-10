@@ -85,8 +85,10 @@ public class WinLogic : MonoBehaviour
         }
 
         WinUi.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
-       
+
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
