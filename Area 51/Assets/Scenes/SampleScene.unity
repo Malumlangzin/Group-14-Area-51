@@ -87540,6 +87540,8 @@ MonoBehaviour:
   - Astromech Socket
   shipAnimator: {fileID: 1886169639}
   winTriggerName: OnWin
+  exitDelay: 2
+  player: {fileID: 1431331009}
 --- !u!95 &1886169639
 Animator:
   serializedVersion: 7
