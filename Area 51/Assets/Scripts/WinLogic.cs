@@ -12,15 +12,18 @@ public class WinLogic : MonoBehaviour
     [SerializeField] private float exitDelay = 2f;
 
     [Header("References")]
-    [SerializeField] private GameObject player; 
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerBody;
+    [SerializeField] private MonoBehaviour[] disableOnWin;
 
     private int itemsInside = 0;
     private bool hasWon = false;
 
     private void OnTriggerEnter(Collider other)
     {
+        if (hasWon) return;
         Tools tool = other.GetComponent<Tools>();
-        if (tool == null || hasWon) return;
+        if (tool == null) return;
 
         foreach (string id in requiredItemIDs)
         {
@@ -30,9 +33,7 @@ public class WinLogic : MonoBehaviour
                 Debug.Log($"✅ Item '{tool.Id}' entered the ship. ({itemsInside}/{requiredItemIDs.Length})");
 
                 if (itemsInside >= requiredItemIDs.Length)
-                {
                     StartCoroutine(HandleWinSequence());
-                }
 
                 break;
             }
@@ -41,8 +42,9 @@ public class WinLogic : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (hasWon) return;
         Tools tool = other.GetComponent<Tools>();
-        if (tool == null || hasWon) return;
+        if (tool == null) return;
 
         foreach (string id in requiredItemIDs)
         {
@@ -60,18 +62,18 @@ public class WinLogic : MonoBehaviour
         hasWon = true;
         Debug.Log("🎉 All items collected! YOU WIN!");
 
-      
-        if (player != null)
+        foreach (var script in disableOnWin)
         {
-            Destroy(player);
+            if (script != null)
+                script.enabled = false;
         }
 
-        
+        if (playerBody != null)
+            Destroy(playerBody);
+
         if (shipAnimator != null)
         {
             shipAnimator.SetTrigger(winTriggerName);
-
-           
             yield return new WaitForSeconds(GetAnimationClipLength(shipAnimator, winTriggerName) + exitDelay);
         }
         else
@@ -79,11 +81,9 @@ public class WinLogic : MonoBehaviour
             yield return new WaitForSeconds(exitDelay);
         }
 
-       
         Application.Quit();
 
 #if UNITY_EDITOR
-        
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
