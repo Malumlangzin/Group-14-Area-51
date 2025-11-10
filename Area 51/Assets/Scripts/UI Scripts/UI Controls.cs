@@ -1,14 +1,16 @@
 using Unity.VisualScripting;
+using UnityEditor.Build.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class UIControls : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    public GameObject Options; 
+    public GameObject Options;
     public GameObject PauseUi;
     public GameObject Volume;
 
@@ -51,37 +53,37 @@ public class UIControls : MonoBehaviour
         Application.Quit();
         Debug.Log("Quitting game...");
     }
-     public void OnOptionsPress()
-     {
-         Options.SetActive(true);
-         PauseUi.SetActive(false);
-         Time.timeScale = 0f;
-     } 
-    
+    public void OnOptionsPress()
+    {
+        Options.SetActive(true);
+        PauseUi.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
     public void OnVolume()
     {
-         Volume.SetActive(true);
-         Cursor.visible = true;
+        Volume.SetActive(true);
+        Cursor.visible = true;
 
-         Time.timeScale = 0f;
+        Time.timeScale = 0f;
 
-         Cursor.lockState = CursorLockMode.None;
-         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
-     public void OnBackPress()
-     {
-         Options.SetActive(false);
-         PauseUi.SetActive(true);
-         Time.timeScale = 0f;
-     }
+    public void OnBackPress()
+    {
+        Options.SetActive(false);
+        PauseUi.SetActive(true);
+        Time.timeScale = 0f;
+    }
     public void OnVolumeBack()
     {
         Options.SetActive(true);
         Volume.SetActive(false);
     }
     public void OnStart(InputAction.CallbackContext context)
-     {
-         print("any key pressed");
-         SceneManager.LoadSceneAsync(2);
-     }
+    {
+        print("any key pressed");
+        SceneManager.LoadSceneAsync(2);
+    }
 }
