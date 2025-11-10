@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class WinLogic : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class WinLogic : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerBody;
     [SerializeField] private MonoBehaviour[] disableOnWin;
+    public GameObject WinUi;
 
     private int itemsInside = 0;
     private bool hasWon = false;
@@ -81,7 +84,9 @@ public class WinLogic : MonoBehaviour
             yield return new WaitForSeconds(exitDelay);
         }
 
-        Application.Quit();
+        WinUi.SetActive(true);
+
+       
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -97,5 +102,16 @@ public class WinLogic : MonoBehaviour
                 return clip.length;
         }
         return 2f;
+    }
+
+    public void OnStart()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quitting game...");
     }
 }

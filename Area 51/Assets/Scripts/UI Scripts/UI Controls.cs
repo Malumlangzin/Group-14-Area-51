@@ -48,6 +48,7 @@ public class UIControls : MonoBehaviour
 
     public void QuitGame()
     {
+        Application.Quit();
         Debug.Log("Quitting game...");
     }
      public void OnOptionsPress()
