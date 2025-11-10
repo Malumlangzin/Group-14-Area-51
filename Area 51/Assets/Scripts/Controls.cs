@@ -105,7 +105,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""18cd81ca-03e3-4cee-a1e6-442ea086c037"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Delta"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true

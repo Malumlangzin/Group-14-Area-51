@@ -18,12 +18,6 @@ public class PauseMenu : MonoBehaviour
         Controls = new Controls(); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         menu = Controls.Menu.Escape;

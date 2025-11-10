@@ -79,42 +79,4 @@ public class UIControls : MonoBehaviour
          print("any key pressed");
          SceneManager.LoadSceneAsync(2);
      }
-    /*
-     public void OnPause()
-     {
-         PauseUi.SetActive(true);
-
-         Cursor.visible = true;
-
-         Time.timeScale = 0f;
-
-         Cursor.lockState = CursorLockMode.None;
-         Cursor.visible = true;
-
-     }
-
-     public void OnVolBack()
-     {
-         Volume.SetActive(false);
-         Time.timeScale = 1.0f;
-     }
-
-
-     public void Quitgame()
-     {
-         print("Quitgame");
-         Application.Quit();
-     }
-
-
-     public void OnPlayPress()
-     {
-         PauseUi.SetActive(false);
-
-         Cursor.lockState = CursorLockMode.Locked;
-         Cursor.visible = false;
-
-         Time.timeScale = 1.0f;
-     }*/
-
 }

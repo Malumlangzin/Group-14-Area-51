@@ -1,15 +1,15 @@
 {
     "version": 1,
-    "name": "Intro Controls",
+    "name": "Intro map",
     "maps": [
         {
-            "name": "New action map",
-            "id": "db8eef96-2d53-4758-bd30-98fc0c7eea4d",
+            "name": "Start",
+            "id": "c8517db8-be38-4ede-a9b2-ca041784599d",
             "actions": [
                 {
-                    "name": "OnStart",
+                    "name": "Start",
                     "type": "Button",
-                    "id": "10c4a72b-b915-4be4-bb74-b388bd8ff02c",
+                    "id": "8c52923e-f32c-441a-9928-6e2eb3351da9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -19,12 +19,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a9720ed1-7d8f-4e93-94d2-0037714ce16f",
+                    "id": "8d1889b2-5350-4115-9c4b-ad27ea37530c",
                     "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OnStart",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
