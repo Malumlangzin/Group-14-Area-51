@@ -1,11 +1,9 @@
 using Unity.VisualScripting;
-using UnityEditor.Build.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class UIControls : MonoBehaviour
 {
