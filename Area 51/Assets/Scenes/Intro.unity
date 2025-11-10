@@ -555,10 +555,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Objective is to collect the tools around the base to fix your ship and
-    escape.\r \n\nUse W,A,S,D to move.  Tab is to access your inventory. Left Control/Right
-    stick press to crouch. Space/Button south to jump. Shift/left stick press to
-    run. E/Button east to pickup. G/Left shoulder/Right click to throw.\n\nPress
-    any key to Play."
+    escape. Collide with the objects to add them to your inventory.\r \n\nWin: Find
+    the ship and unload your inventory to it.\n\nUse W,A,S,D to move.  Tab is to
+    access your inventory.  Left Control/Right stick press to crouch. Space/Button
+    south to jump. Shift/left stick press to run..\n\nPress any key to Play."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
